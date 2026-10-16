@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2010-2011, The MiCode Open Source Community (www.micode.net)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <!-- 界面美化：标题栏与正文区加入左右留白和内边距。
+             两者的背景由 NoteEditActivity 动态设为 edit_title_* / edit_*，
+             在 drawable-anydpi 下已是圆角 shape。 -->
+        <LinearLayout
+            android:id="@+id/note_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/card_margin_h"
+            android:layout_marginRight="@dimen/card_margin_h"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/card_padding_h"
+            android:paddingRight="@dimen/space_sm"
+            android:paddingTop="@dimen/space_sm"
+            android:paddingBottom="@dimen/space_sm">
+
+            <TextView
+                android:id="@+id/tv_modified_date"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginRight="8dip"
+                android:textAppearance="@style/TextAppearanceSecondaryItem" />
+
+            <ImageView
+                android:id="@+id/iv_alert_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/title_alert" />
+
+            <TextView
+                android:id="@+id/tv_alert_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="8dip"
+                android:textAppearance="@style/TextAppearanceSecondaryItem" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_btn_set_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sv_note_edit"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/card_margin_h"
+            android:layout_marginRight="@dimen/card_margin_h"
+            android:layout_marginTop="@dimen/space_xs"
+            android:layout_marginBottom="@dimen/space_sm"
+            android:paddingLeft="@dimen/card_padding_h"
+            android:paddingRight="@dimen/card_padding_h"
+            android:paddingTop="@dimen/card_padding_v"
+            android:paddingBottom="@dimen/card_padding_v">
+
+            <!-- 原此处有一条 7dip 的 bg_color_btn_mask 装饰贴图，
+                 卡片已有圆角描边，装饰条反而割裂版面，故移除（上下各一条） -->
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_gravity="left|top"
+                android:fadingEdgeLength="0dip">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <net.micode.notes.ui.NoteEditText
+                        android:id="@+id/note_edit_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|top"
+                        android:background="@null"
+                        android:autoLink="all"
+                        android:linksClickable="false"
+                        android:minLines="12"
+                        android:textAppearance="@style/TextAppearancePrimaryItem"
+                        android:lineSpacingMultiplier="1.5" />
+
+                    <LinearLayout
+                        android:id="@+id/note_edit_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="-10dip"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_set_bg_color"
+        android:layout_height="43dip"
+        android:layout_width="wrap_content"
+        android:background="@drawable/bg_color_btn_mask"
+        android:layout_gravity="top|right" />
+
+    <!-- 换色面板。原来宽高为 wrap_content，靠背景 .9.png 的固有尺寸撑开；
+         美化后背景换成无固有尺寸的 shape，故必须显式给出宽高与内边距。 -->
+    <LinearLayout
+        android:id="@+id/note_bg_color_selector"
+        android:layout_width="@dimen/color_panel_width"
+        android:layout_height="@dimen/color_panel_height"
+        android:background="@drawable/note_edit_color_selector_panel"
+        android:padding="@dimen/space_sm"
+        android:elevation="8dp"
+        android:layout_marginTop="@dimen/space_lg"
+        android:layout_marginRight="@dimen/card_margin_h"
+        android:layout_gravity="top|right"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- 原设计中色块是画在面板底图里的，这里只是透明热区；
+                 底图换成纯色 shape 后必须显式给出色块背景 -->
+            <ImageView
+                android:id="@+id/iv_bg_yellow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/swatch_margin"
+                android:background="@drawable/swatch_yellow" />
+
+            <ImageView
+                android:id="@+id/iv_bg_yellow_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_bg_blue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/swatch_margin"
+                android:background="@drawable/swatch_blue" />
+
+            <ImageView
+                android:id="@+id/iv_bg_blue_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_bg_white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/swatch_margin"
+                android:background="@drawable/swatch_white" />
+
+            <ImageView
+                android:id="@+id/iv_bg_white_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_bg_green"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/swatch_margin"
+                android:background="@drawable/swatch_green" />
+
+            <ImageView
+                android:id="@+id/iv_bg_green_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_bg_red"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/swatch_margin"
+                android:background="@drawable/swatch_red" />
+
+            <ImageView
+                android:id="@+id/iv_bg_red_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/font_size_selector"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/font_size_selector_bg"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/ll_font_small"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/font_small"
+                    android:layout_marginBottom="5dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_font_small"
+                    android:textAppearance="@style/TextAppearanceUnderMenuIcon" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_small_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="6dip"
+                android:layout_marginBottom="-7dip"
+                android:focusable="false"
+                android:visibility="gone"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_font_normal"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/font_normal"
+                    android:layout_marginBottom="5dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_font_normal"
+                    android:textAppearance="@style/TextAppearanceUnderMenuIcon" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_medium_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:focusable="false"
+                android:visibility="gone"
+                android:layout_marginRight="6dip"
+                android:layout_marginBottom="-7dip"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_font_large"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/font_large"
+                    android:layout_marginBottom="5dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_font_large"
+                    android:textAppearance="@style/TextAppearanceUnderMenuIcon" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_large_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:focusable="false"
+                android:visibility="gone"
+                android:layout_marginRight="6dip"
+                android:layout_marginBottom="-7dip"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_font_super"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/font_super"
+                    android:layout_marginBottom="5dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_font_super"
+                    android:textAppearance="@style/TextAppearanceUnderMenuIcon" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_super_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:focusable="false"
+                android:visibility="gone"
+                android:layout_marginRight="6dip"
+                android:layout_marginBottom="-7dip"
+                android:src="@drawable/selected" />
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

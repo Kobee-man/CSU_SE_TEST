@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 界面美化新增：文件夹标题栏底色。原图保留在 drawable-hdpi/title_bar_bg.9.png -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/accent" />
+</shape>

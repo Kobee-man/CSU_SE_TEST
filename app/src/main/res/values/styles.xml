@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2010-2011, The MiCode Open Source Community (www.micode.net)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <style name="TextAppearanceSuper">
+        <item name="android:textSize">@dimen/text_font_size_super</item>
+        <item name="android:textColorLink">#0000ff</item>
+    </style>
+    <style name="TextAppearanceLarge">
+        <item name="android:textSize">@dimen/text_font_size_large</item>
+        <item name="android:textColorLink">#0000ff</item>
+    </style>
+    <style name="TextAppearanceMedium">
+        <item name="android:textSize">@dimen/text_font_size_medium</item>
+        <item name="android:textColorLink">#0000ff</item>
+    </style>
+    <style name="TextAppearanceNormal">
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColorLink">#0000ff</item>
+    </style>
+
+    <style name="TextAppearancePrimaryItem">
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColor">@color/primary_text_dark</item>
+    </style>
+
+    <style name="TextAppearanceSecondaryItem">
+        <item name="android:textSize">@dimen/text_font_size_small</item>
+        <item name="android:textColor">@color/secondary_text_dark</item>
+    </style>
+
+    <style name="TextAppearanceUnderMenuIcon">
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="HighlightTextAppearancePrimary">
+    <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColor">@color/primary_text_dark</item>
+    </style>
+
+    <style name="HighlightTextAppearanceSecondary">
+        <item name="android:textSize">@dimen/text_font_size_small</item>
+        <item name="android:textColor">@color/secondary_text_dark</item>
+    </style>
+
+    <!-- 主题：由 2011 年的 Holo.Light 换成 Material 系的 DeviceDefault.Light。
+         ActionBar 保持隐藏（原设计如此，应用自己画标题栏），但补上状态栏
+         与窗口底色，避免换主题后出现突兀的灰白块。 -->
+    <style name="NoteTheme" parent="@android:style/Theme.DeviceDefault.Light">
+        <item name="android:actionBarStyle">@style/NoteActionBarStyle</item>
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="android:colorPrimary">@color/app_background</item>
+        <item name="android:colorPrimaryDark">@color/app_background</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:colorEdgeEffect">@color/accent</item>
+        <!-- 底色是浅色，状态栏图标必须转为深色，否则白色图标在浅底上看不见 -->
+        <item name="android:statusBarColor">@color/app_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/app_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="NoteActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar.Solid">
+        <item name="android:displayOptions" />
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!-- ============ 以下为界面美化新增 ============ -->
+
+    <!-- 列表项标题：加粗一档，和下方时间戳拉开层级 -->
+    <style name="TextAppearanceNoteTitle">
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 新建便签按钮文字 -->
+    <style name="TextAppearanceNewNote">
+        <item name="android:textSize">@dimen/text_font_size_normal</item>
+        <item name="android:textColor">@color/text_on_accent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

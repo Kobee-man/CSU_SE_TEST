@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2010-2011, The MiCode Open Source Community (www.micode.net)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- 界面美化：列表加左右留白与卡片间距；新建按钮由通栏贴底改为悬浮胶囊按钮。
+     id 均保持不变（NotesListActivity.java 按 id 绑定）。 -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <!-- 文件夹标题栏，进入子文件夹时由代码置为 visible -->
+        <TextView
+            android:id="@+id/tv_title_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/accent"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/space_md"
+            android:paddingRight="@dimen/space_md"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_md"
+            android:textColor="@color/text_on_accent"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_font_size_medium" />
+
+        <ListView
+            android:id="@+id/notes_list"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/card_margin_h"
+            android:paddingRight="@dimen/card_margin_h"
+            android:paddingTop="@dimen/space_sm"
+            android:clipToPadding="false"
+            android:cacheColorHint="@null"
+            android:listSelector="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/card_margin_v"
+            android:scrollbarStyle="outsideOverlay"
+            android:fadingEdge="@null" />
+    </LinearLayout>
+
+    <!-- 悬浮的新建便签按钮。背景 @drawable/new_note 是 selector，
+         在 drawable-anydpi 下已换成圆角纯色，不再是 2011 年的通栏贴图 -->
+    <Button
+        android:id="@+id/btn_new_note"
+        android:background="@drawable/new_note"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/new_note_height"
+        android:layout_marginLeft="@dimen/new_note_margin"
+        android:layout_marginRight="@dimen/new_note_margin"
+        android:layout_marginBottom="@dimen/new_note_margin"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:text="@string/notelist_menu_new"
+        android:textAppearance="@style/TextAppearanceNewNote"
+        android:focusable="false"
+        android:layout_gravity="bottom" />
+</FrameLayout>

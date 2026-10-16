@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2010-2011, The MiCode Open Source Community (www.micode.net)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- 原有资源，Java 中 NoteEditActivity 搜索高亮引用，不可改名 -->
+    <color name="user_query_highlight">#33C8A96A</color>
+
+    <!-- ============ 以下为界面美化新增的设计 token ============ -->
+
+    <!-- 品牌色：取便签原本的暖黄基调，收敛成克制的琥珀色 -->
+    <color name="accent">#C8913C</color>
+    <color name="accent_pressed">#A87826</color>
+
+    <!-- 页面底色：微暖的纸白，比纯白柔和，长时间阅读不刺眼 -->
+    <color name="app_background">#FAF7F2</color>
+
+    <!-- 文字层级 -->
+    <color name="text_primary">#1F1B16</color>
+    <color name="text_secondary">#8A8178</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- 便签 5 色（对应 ResourceParser 的 YELLOW/BLUE/WHITE/GREEN/RED）
+         由 2011 年的高饱和渐变改为低饱和哑光色，保持可区分度 -->
+    <color name="note_yellow">#FDF3D7</color>
+    <color name="note_blue">#DFEAF4</color>
+    <color name="note_white">#FFFFFF</color>
+    <color name="note_green">#E2EFDF</color>
+    <color name="note_red">#F8E2DF</color>
+
+    <!-- 便签 5 色对应的描边，比填充深一档，给卡片一个清晰边界 -->
+    <color name="note_yellow_stroke">#E8D5A0</color>
+    <color name="note_blue_stroke">#BBD0E3</color>
+    <color name="note_white_stroke">#E4DED5</color>
+    <color name="note_green_stroke">#C4DBBF</color>
+    <color name="note_red_stroke">#E8C4BE</color>
+
+    <!-- 文件夹项：与便签区分，用中性灰 -->
+    <color name="folder_background">#F1EDE6</color>
+    <color name="folder_stroke">#DCD5CA</color>
+
+    <!-- 编辑页：正文区域底色（对应 edit_* 系列） -->
+    <color name="edit_yellow">#FEFAEC</color>
+    <color name="edit_blue">#F2F7FB</color>
+    <color name="edit_white">#FFFFFF</color>
+    <color name="edit_green">#F3F8F1</color>
+    <color name="edit_red">#FDF4F2</color>
+
+    <!-- 分隔线与按压态 -->
+    <color name="divider">#1A1F1B16</color>
+    <color name="ripple">#1F1F1B16</color>
+</resources>

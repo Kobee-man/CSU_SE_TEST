@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 界面美化新增：换色面板底板。原图是 2011 年的灰色渐变贴图。
+     注意：原 png 自带固有尺寸，面板宽高靠它撑开；shape 没有固有尺寸，
+     所以 note_edit.xml 里必须给面板显式指定宽高，否则面板会塌成一个点。
+     原图保留在 drawable-hdpi/note_edit_color_selector_panel.png -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <stroke
+        android:width="@dimen/card_stroke"
+        android:color="@color/note_white_stroke" />
+    <corners android:radius="@dimen/card_corner" />
+</shape>
