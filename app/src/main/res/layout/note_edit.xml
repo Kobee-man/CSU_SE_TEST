@@ -107,6 +107,7 @@
 
                     <net.micode.notes.ui.NoteEditText
                         android:id="@+id/note_edit_view"
+                        android:hint="@string/note_editor_hint"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left|top"
@@ -131,6 +132,7 @@
 
     <ImageView
         android:id="@+id/btn_set_bg_color"
+        android:contentDescription="@string/note_background_color"
         android:layout_height="43dip"
         android:layout_width="wrap_content"
         android:background="@drawable/bg_color_btn_mask"
@@ -159,6 +161,7 @@
                  底图换成纯色 shape 后必须显式给出色块背景 -->
             <ImageView
                 android:id="@+id/iv_bg_yellow"
+                android:contentDescription="@string/note_color_yellow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/swatch_margin"
@@ -181,6 +184,7 @@
 
             <ImageView
                 android:id="@+id/iv_bg_blue"
+                android:contentDescription="@string/note_color_blue"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/swatch_margin"
@@ -203,6 +207,7 @@
 
             <ImageView
                 android:id="@+id/iv_bg_white"
+                android:contentDescription="@string/note_color_white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/swatch_margin"
@@ -225,6 +230,7 @@
 
             <ImageView
                 android:id="@+id/iv_bg_green"
+                android:contentDescription="@string/note_color_green"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/swatch_margin"
@@ -247,6 +253,7 @@
 
             <ImageView
                 android:id="@+id/iv_bg_red"
+                android:contentDescription="@string/note_color_red"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/swatch_margin"

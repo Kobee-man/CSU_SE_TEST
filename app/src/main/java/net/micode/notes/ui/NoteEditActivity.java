@@ -16,7 +16,6 @@
 
 package net.micode.notes.ui;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -72,7 +71,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class NoteEditActivity extends Activity implements OnClickListener,
+public class NoteEditActivity extends LocalizedActivity implements OnClickListener,
         NoteSettingChangedListener, OnTextViewChangeListener {
     private class HeadViewHolder {
         public TextView tvModified;
@@ -154,29 +153,17 @@ public class NoteEditActivity extends Activity implements OnClickListener,
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.note_edit);
 
-        if (savedInstanceState == null && !initActivityState(getIntent())) {
+        Intent noteIntent = getIntent();
+        if (savedInstanceState != null && savedInstanceState.getLong(Intent.EXTRA_UID, 0) > 0) {
+            noteIntent = new Intent(Intent.ACTION_VIEW);
+            noteIntent.putExtra(Intent.EXTRA_UID, savedInstanceState.getLong(Intent.EXTRA_UID));
+        }
+        // Restore the model before the framework restores the ActionBar menu.
+        if (!initActivityState(noteIntent)) {
             finish();
             return;
         }
         initResources();
-    }
-
-    /**
-     * Current activity may be killed when the memory is low. Once it is killed, for another time
-     * user load this activity, we should restore the former state
-     */
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null && savedInstanceState.containsKey(Intent.EXTRA_UID)) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.putExtra(Intent.EXTRA_UID, savedInstanceState.getLong(Intent.EXTRA_UID));
-            if (!initActivityState(intent)) {
-                finish();
-                return;
-            }
-            Log.d(TAG, "Restoring from killed activity");
-        }
     }
 
     private boolean initActivityState(Intent intent) {

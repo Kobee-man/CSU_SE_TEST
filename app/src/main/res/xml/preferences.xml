@@ -17,6 +17,13 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="pref_app_language"
+        android:title="@string/preferences_language_title"
+        android:dialogTitle="@string/preferences_language_title"
+        android:entries="@array/app_language_entries"
+        android:entryValues="@array/app_language_values"
+        android:persistent="false" />
     <PreferenceCategory
         android:key="pref_sync_account_key">
     </PreferenceCategory>

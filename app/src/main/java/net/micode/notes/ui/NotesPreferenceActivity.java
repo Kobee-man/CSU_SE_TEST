@@ -30,6 +30,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -44,6 +45,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.micode.notes.R;
+import net.micode.notes.tool.AppLanguage;
 import net.micode.notes.data.Notes;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.gtask.remote.GTaskSyncService;
@@ -71,6 +73,11 @@ public class NotesPreferenceActivity extends PreferenceActivity {
     private boolean mHasAddedAccount;
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(AppLanguage.wrap(base));
+    }
+
+    @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
@@ -78,6 +85,18 @@ public class NotesPreferenceActivity extends PreferenceActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.xml.preferences);
+        ListPreference language = (ListPreference) findPreference("pref_app_language");
+        language.setOnPreferenceChangeListener((preference, value) -> {
+            String languageTag = (String) value;
+            if (!languageTag.equals(AppLanguage.getLanguage(this))) {
+                AppLanguage.setLanguage(this, languageTag);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                    recreate();
+                }
+            }
+            // LocaleManager / AppLanguage owns persistence, not default preferences.
+            return false;
+        });
         mAccountCategory = (PreferenceCategory) findPreference(PREFERENCE_SYNC_ACCOUNT_KEY);
         mReceiver = new GTaskReceiver();
         IntentFilter filter = new IntentFilter();
@@ -199,6 +218,10 @@ public class NotesPreferenceActivity extends PreferenceActivity {
     }
 
     private void refreshUI() {
+        ListPreference language = (ListPreference) findPreference("pref_app_language");
+        language.setValue(AppLanguage.getLanguage(this));
+        language.setSummary(language.getEntry());
+        setTitle(R.string.preferences_title);
         loadAccountPreference();
         loadSyncButton();
     }

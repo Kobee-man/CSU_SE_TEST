@@ -16,7 +16,6 @@
 
 package net.micode.notes.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,7 +39,7 @@ import net.micode.notes.tool.DataUtils;
 import java.io.IOException;
 
 
-public class AlarmAlertActivity extends Activity implements OnClickListener, OnDismissListener {
+public class AlarmAlertActivity extends LocalizedActivity implements OnClickListener, OnDismissListener {
     private long mNoteId;
     private String mSnippet;
     private static final int SNIPPET_PREW_MAX_LEN = 60;

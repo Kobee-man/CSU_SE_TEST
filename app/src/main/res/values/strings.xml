@@ -28,7 +28,7 @@
     <string name="set_remind_time_message">Set reminder</string>
     <string name="note_alert_expired">Expired</string>
     <string name="format_date_ymd">yyyyMMdd</string>
-    <string name="format_datetime_mdhm">MMMd kk:mm</string>
+    <string name="format_datetime_mdhm">MMMd HH:mm</string>
     <string name="notealert_ok">Got it</string>
     <string name="notealert_enter">Take a look</string>
     <string name="note_link_tel">Call</string>
