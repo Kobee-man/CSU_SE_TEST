@@ -20,6 +20,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.Cursor;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashSet;
 import android.util.Log;
 
 import net.micode.notes.data.Notes.DataColumns;
@@ -308,7 +312,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion == 1) {
             upgradeToV2(db);
             skipV2 = true; // this upgrade including the upgrade from v2 to v3
-            oldVersion++;
+            oldVersion = 4;
         }
 
         if (oldVersion == 2 && !skipV2) {
@@ -334,10 +338,48 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void upgradeToV2(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE.NOTE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE.DATA);
-        createNoteTable(db);
-        createDataTable(db);
+        // SQLiteOpenHelper runs this migration in one transaction. Copy shared columns
+        // into the current schema before replacing either table; never discard user rows.
+        ArrayList<String> triggers = new ArrayList<>();
+        try (Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name IN (?,?)",
+                new String[]{TABLE.NOTE, TABLE.DATA})) {
+            while (c.moveToNext()) triggers.add(c.getString(0));
+        }
+        for (String trigger : triggers) db.execSQL("DROP TRIGGER \"" + trigger.replace("\"", "\"\"") + "\"");
+        copyToCurrentSchema(db, TABLE.NOTE, CREATE_NOTE_TABLE_SQL);
+        copyToCurrentSchema(db, TABLE.DATA, CREATE_DATA_TABLE_SQL);
+        // Existing system folders and their IDs are preserved.
+        for (long id : new long[]{Notes.ID_ROOT_FOLDER, Notes.ID_CALL_RECORD_FOLDER,
+                Notes.ID_TEMPARAY_FOLDER, Notes.ID_TRASH_FOLER}) {
+            ContentValues values = new ContentValues();
+            values.put(NoteColumns.ID, id);
+            values.put(NoteColumns.TYPE, Notes.TYPE_SYSTEM);
+            db.insertWithOnConflict(TABLE.NOTE, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        }
+        db.execSQL(CREATE_DATA_NOTE_ID_INDEX_SQL);
+        reCreateNoteTableTriggers(db);
+        reCreateDataTableTriggers(db);
+    }
+
+    private void copyToCurrentSchema(SQLiteDatabase db, String table, String createSql) {
+        String temporary = table + "_migrating";
+        db.execSQL(createSql.replace("CREATE TABLE " + table + "(", "CREATE TABLE " + temporary + "("));
+        HashSet<String> oldColumns = new HashSet<>();
+        try (Cursor c = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
+            while (c.moveToNext()) oldColumns.add(c.getString(1));
+        }
+        if (!oldColumns.contains("_id")) throw new IllegalStateException("Unknown legacy schema; original database retained");
+        ArrayList<String> common = new ArrayList<>();
+        try (Cursor c = db.rawQuery("PRAGMA table_info(" + temporary + ")", null)) {
+            while (c.moveToNext()) {
+                String name = c.getString(1);
+                if (oldColumns.contains(name)) common.add("\"" + name + "\"");
+            }
+        }
+        String columns = TextUtils.join(",", common);
+        db.execSQL("INSERT INTO " + temporary + " (" + columns + ") SELECT " + columns + " FROM " + table);
+        db.execSQL("DROP TABLE " + table);
+        db.execSQL("ALTER TABLE " + temporary + " RENAME TO " + table);
     }
 
     private void upgradeToV3(SQLiteDatabase db) {

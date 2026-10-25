@@ -73,7 +73,8 @@ public class GTaskASyncTask extends AsyncTask<Void, String, Integer> {
             pendingIntent = PendingIntent.getActivity(mContext, 0, new Intent(mContext,
                     NotesListActivity.class), PendingIntent.FLAG_IMMUTABLE);
         }
-        Notification notification = new Notification.Builder(mContext)
+        if (!net.micode.notes.tool.Notifications.allowed(mContext)) return;
+        Notification notification = net.micode.notes.tool.Notifications.builder(mContext, "sync", false)
                 .setSmallIcon(R.drawable.notification)
                 .setTicker(mContext.getString(tickerId))
                 .setWhen(System.currentTimeMillis())
@@ -83,7 +84,9 @@ public class GTaskASyncTask extends AsyncTask<Void, String, Integer> {
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setAutoCancel(true)
                 .build();
-        mNotifiManager.notify(GTASK_SYNC_NOTIFICATION_ID, notification);
+        try {
+            mNotifiManager.notify(GTASK_SYNC_NOTIFICATION_ID, notification);
+        } catch (SecurityException ignored) { }
     }
 
     @Override

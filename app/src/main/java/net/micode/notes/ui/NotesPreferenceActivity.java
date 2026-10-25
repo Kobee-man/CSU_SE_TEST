@@ -176,6 +176,8 @@ public class NotesPreferenceActivity extends PreferenceActivity {
         });
 
         mAccountCategory.addPreference(accountPref);
+        accountPref.setSummary(R.string.legacy_sync_disabled);
+        accountPref.setEnabled(false);
     }
 
     private void loadSyncButton() {
@@ -198,7 +200,8 @@ public class NotesPreferenceActivity extends PreferenceActivity {
                 }
             });
         }
-        syncButton.setEnabled(!TextUtils.isEmpty(getSyncAccountName(this)));
+        syncButton.setEnabled(false);
+        syncButton.setText(R.string.legacy_sync_disabled);
 
         // set last sync time
         if (GTaskSyncService.isSyncing()) {

@@ -19,6 +19,9 @@ package net.micode.notes.data;
 
 import android.app.SearchManager;
 import android.content.ContentProvider;
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
+import android.content.OperationApplicationException;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -33,12 +36,83 @@ import net.micode.notes.R;
 import net.micode.notes.data.Notes.DataColumns;
 import net.micode.notes.data.Notes.NoteColumns;
 import net.micode.notes.data.NotesDatabaseHelper.TABLE;
+import net.micode.notes.ui.AlarmScheduler;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 
 public class NotesProvider extends ContentProvider {
     private static final UriMatcher mMatcher;
 
     private NotesDatabaseHelper mHelper;
+    private final ThreadLocal<LinkedHashSet<Uri>> mPendingChanges = new ThreadLocal<>();
+    private final ThreadLocal<LinkedHashSet<Long>> mPendingAlarms = new ThreadLocal<>();
+
+    @Override
+    public ContentProviderResult[] applyBatch(ArrayList<ContentProviderOperation> operations)
+            throws OperationApplicationException {
+        SQLiteDatabase db = mHelper.getWritableDatabase();
+        LinkedHashSet<Uri> changes = new LinkedHashSet<>();
+        LinkedHashSet<Long> alarms = new LinkedHashSet<>();
+        mPendingChanges.set(changes);
+        mPendingAlarms.set(alarms);
+        db.beginTransaction();
+        boolean committed = false;
+        try {
+            ContentProviderResult[] results = super.applyBatch(operations);
+            db.setTransactionSuccessful();
+            committed = true;
+            return results;
+        } finally {
+            try {
+                db.endTransaction();
+            } finally {
+                mPendingChanges.remove();
+                mPendingAlarms.remove();
+            }
+            if (committed) {
+                for (Uri changed : changes) notifyCommitted(changed);
+                for (Long id : alarms) refreshAlarm(id);
+            }
+        }
+    }
+
+    private void notifyCommitted(Uri uri) {
+        try {
+            getContext().getContentResolver().notifyChange(uri, null);
+        } catch (RuntimeException e) {
+            Log.w(TAG, "Observer notification failed after commit");
+        }
+    }
+
+    private void changed(Uri uri) {
+        LinkedHashSet<Uri> changes = mPendingChanges.get();
+        if (changes != null) changes.add(uri);
+        else notifyCommitted(uri);
+    }
+
+    private void refreshAlarm(long id) {
+        try {
+            AlarmScheduler.refresh(getContext(), id);
+        } catch (RuntimeException e) {
+            Log.w(TAG, "Reminder refresh failed after commit");
+        }
+    }
+
+    private void alarmsChanged(LinkedHashSet<Long> ids) {
+        LinkedHashSet<Long> pending = mPendingAlarms.get();
+        if (pending != null) pending.addAll(ids);
+        else for (Long id : ids) refreshAlarm(id);
+    }
+
+    private LinkedHashSet<Long> activeAlarmIds(SQLiteDatabase db) {
+        LinkedHashSet<Long> ids = new LinkedHashSet<>();
+        try (Cursor c = db.query(TABLE.NOTE, new String[]{NoteColumns.ID},
+                NoteColumns.ALERTED_DATE + ">0", null, null, null, null)) {
+            while (c.moveToNext()) ids.add(c.getLong(0));
+        }
+        return ids;
+    }
 
     private static final String TAG = "NotesProvider";
 
@@ -153,7 +227,7 @@ public class NotesProvider extends ContentProvider {
         long dataId = 0, noteId = 0, insertedId = 0;
         switch (mMatcher.match(uri)) {
             case URI_NOTE:
-                insertedId = noteId = db.insert(TABLE.NOTE, null, values);
+                insertedId = noteId = db.insertOrThrow(TABLE.NOTE, null, values);
                 break;
             case URI_DATA:
                 if (values.containsKey(DataColumns.NOTE_ID)) {
@@ -161,21 +235,24 @@ public class NotesProvider extends ContentProvider {
                 } else {
                     Log.d(TAG, "Wrong data format without note id:" + values.toString());
                 }
-                insertedId = dataId = db.insert(TABLE.DATA, null, values);
+                insertedId = dataId = db.insertOrThrow(TABLE.DATA, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
         // Notify the note uri
         if (noteId > 0) {
-            getContext().getContentResolver().notifyChange(
-                    ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId), null);
+            changed(ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId));
+            if (mMatcher.match(uri) == URI_NOTE) {
+                LinkedHashSet<Long> alarms = new LinkedHashSet<>();
+                alarms.add(noteId);
+                alarmsChanged(alarms);
+            }
         }
 
         // Notify the data uri
         if (dataId > 0) {
-            getContext().getContentResolver().notifyChange(
-                    ContentUris.withAppendedId(Notes.CONTENT_DATA_URI, dataId), null);
+            changed(ContentUris.withAppendedId(Notes.CONTENT_DATA_URI, dataId));
         }
 
         return ContentUris.withAppendedId(uri, insertedId);
@@ -187,9 +264,10 @@ public class NotesProvider extends ContentProvider {
         String id = null;
         SQLiteDatabase db = mHelper.getWritableDatabase();
         boolean deleteData = false;
+        LinkedHashSet<Long> alarms = activeAlarmIds(db);
         switch (mMatcher.match(uri)) {
             case URI_NOTE:
-                selection = "(" + selection + ") AND " + NoteColumns.ID + ">0 ";
+                selection = NoteColumns.ID + ">0" + parseSelection(selection);
                 count = db.delete(TABLE.NOTE, selection, selectionArgs);
                 break;
             case URI_NOTE_ITEM:
@@ -220,9 +298,10 @@ public class NotesProvider extends ContentProvider {
         }
         if (count > 0) {
             if (deleteData) {
-                getContext().getContentResolver().notifyChange(Notes.CONTENT_NOTE_URI, null);
+                changed(Notes.CONTENT_NOTE_URI);
             }
-            getContext().getContentResolver().notifyChange(uri, null);
+            changed(uri);
+            alarmsChanged(alarms);
         }
         return count;
     }
@@ -233,15 +312,16 @@ public class NotesProvider extends ContentProvider {
         String id = null;
         SQLiteDatabase db = mHelper.getWritableDatabase();
         boolean updateData = false;
+        LinkedHashSet<Long> alarms = activeAlarmIds(db);
+        db.beginTransaction();
+        try {
         switch (mMatcher.match(uri)) {
             case URI_NOTE:
-                increaseNoteVersion(-1, selection, selectionArgs);
-                count = db.update(TABLE.NOTE, values, selection, selectionArgs);
+                count = updateNotes(db, values, selection, selectionArgs);
                 break;
             case URI_NOTE_ITEM:
                 id = uri.getPathSegments().get(1);
-                increaseNoteVersion(Long.valueOf(id), selection, selectionArgs);
-                count = db.update(TABLE.NOTE, values, NoteColumns.ID + "=" + id
+                count = updateNotes(db, values, NoteColumns.ID + "=" + id
                         + parseSelection(selection), selectionArgs);
                 break;
             case URI_DATA:
@@ -258,11 +338,17 @@ public class NotesProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
+        db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
         if (count > 0) {
+            alarms.addAll(activeAlarmIds(db));
+            alarmsChanged(alarms);
             if (updateData) {
-                getContext().getContentResolver().notifyChange(Notes.CONTENT_NOTE_URI, null);
+                changed(Notes.CONTENT_NOTE_URI);
             }
-            getContext().getContentResolver().notifyChange(uri, null);
+            changed(uri);
         }
         return count;
     }
@@ -271,29 +357,23 @@ public class NotesProvider extends ContentProvider {
         return (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
     }
 
-    private void increaseNoteVersion(long id, String selection, String[] selectionArgs) {
-        StringBuilder sql = new StringBuilder(120);
-        sql.append("UPDATE ");
-        sql.append(TABLE.NOTE);
-        sql.append(" SET ");
-        sql.append(NoteColumns.VERSION);
-        sql.append("=" + NoteColumns.VERSION + "+1 ");
-
-        if (id > 0 || !TextUtils.isEmpty(selection)) {
-            sql.append(" WHERE ");
-        }
-        if (id > 0) {
-            sql.append(NoteColumns.ID + "=" + String.valueOf(id));
-        }
-        if (!TextUtils.isEmpty(selection)) {
-            String selectString = id > 0 ? parseSelection(selection) : selection;
-            for (String args : selectionArgs) {
-                selectString = selectString.replaceFirst("\\?", args);
+    private int updateNotes(SQLiteDatabase db, ContentValues values, String selection, String[] args) {
+        ArrayList<Long> ids = new ArrayList<>();
+        String sql = "SELECT " + NoteColumns.ID + " FROM " + TABLE.NOTE
+                + (TextUtils.isEmpty(selection) ? "" : " WHERE " + selection);
+        try (Cursor c = db.rawQueryWithFactory((database, driver, editTable, query) -> {
+            if (args != null) for (int i = 0; i < args.length; i++) {
+                if (args[i] == null) query.bindNull(i + 1);
+                else query.bindString(i + 1, args[i]);
             }
-            sql.append(selectString);
+            return new android.database.sqlite.SQLiteCursor(driver, editTable, query);
+        }, sql, null, null)) {
+            while (c.moveToNext()) ids.add(c.getLong(0));
         }
-
-        mHelper.getWritableDatabase().execSQL(sql.toString());
+        int count = db.update(TABLE.NOTE, values, selection, args);
+        for (long id : ids) db.execSQL("UPDATE " + TABLE.NOTE + " SET " + NoteColumns.VERSION
+                + "=" + NoteColumns.VERSION + "+1 WHERE " + NoteColumns.ID + "=?", new Object[]{id});
+        return count;
     }
 
     @Override

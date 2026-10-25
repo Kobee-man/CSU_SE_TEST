@@ -27,8 +27,6 @@
     <string name="delete_remind_time_message">Delete reminder successfully</string>
     <string name="set_remind_time_message">Set reminder</string>
     <string name="note_alert_expired">Expired</string>
-    <string name="format_date_ymd">yyyyMMdd</string>
-    <string name="format_datetime_mdhm">MMMd HH:mm</string>
     <string name="notealert_ok">Got it</string>
     <string name="notealert_enter">Take a look</string>
     <string name="note_link_tel">Call</string>
@@ -36,8 +34,6 @@
     <string name="note_link_web">Browse web</string>
     <string name="note_link_other">Open map</string>
     <!-- Text export file information -->
-    <string name="file_path">/MIUI/notes/</string>
-    <string name="file_name_txt_format">notes_%s.txt</string>
     <!-- notes list string -->
     <string name="format_folder_files_count">(%d)</string>
     <string name="menu_create_folder">New Folder</string>
@@ -76,14 +72,11 @@
     <string name="alert_message_delete_note">Confirm to delete this note?</string>
     <string name="format_move_notes_to_folder">Have moved selected %1$d notes to %2$s folder</string>
     <!-- Error information -->
-    <string name="error_sdcard_unmounted">SD card busy, not available now</string>
     <string name="error_sdcard_export">Export failed, please check SD card</string>
     <string name="error_note_not_exist">The note is not exist</string>
     <string name="error_note_empty_for_clock">Sorry, can not set clock on empty note</string>
     <string name="error_note_empty_for_send_to_desktop">Sorry, can not send and empty note to home</string>
     <string name="success_sdcard_export">Export successful</string>
-    <string name="failed_sdcard_export">Export fail</string>
-    <string name="format_exported_file_location">Export text file (%1$s) to SD (%2$s) directory</string>
     <!-- Sync -->
     <string name="ticker_syncing">Syncing notes...</string>
     <string name="ticker_success">Sync is successful</string>

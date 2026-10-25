@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-23",
+  "evidence_type": "local-file/source/package-static",
+  "limitations": [
+    "Not REA evidence; no APK execution or cloud API requests.",
+    "DEX parser inventories class definitions only; no method disassembly.",
+    "Historical test notes are not re-execution of those tests."
+  ],
+  "apk": {
+    "path": "D:\\SE\\软件工程项目实验\\补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "sha256": "a0f12da890de40f943aae831d14c953211e1102e2e3f569ed9d58d63dfa4246f",
+    "size": 7061520,
+    "dex_members": [
+      {
+        "name": "classes4.dex",
+        "class_count": 24
+      },
+      {
+        "name": "classes5.dex",
+        "class_count": 6
+      },
+      {
+        "name": "classes3.dex",
+        "class_count": 2
+      },
+      {
+        "name": "classes2.dex",
+        "class_count": 247
+      },
+      {
+        "name": "classes6.dex",
+        "class_count": 55
+      },
+      {
+        "name": "classes.dex",
+        "class_count": 6895
+      }
+    ],
+    "first_party_class_definitions": [
+      "Lbaidu/com/ChatCompletion$Usage;",
+      "Lbaidu/com/ChatCompletion;",
+      "Lbaidu/com/RequestBodyGenerator$Message;",
+      "Lbaidu/com/RequestBodyGenerator$RequestBodyModel;",
+      "Lbaidu/com/RequestBodyGenerator;",
+      "Lbaidu/com/Sample;",
+      "Lcom/example/emptyactivity/AdviseActivity$$ExternalSyntheticLambda0;",
+      "Lcom/example/emptyactivity/AdviseActivity$1$1$1;",
+      "Lcom/example/emptyactivity/AdviseActivity$1$1$2;",
+      "Lcom/example/emptyactivity/AdviseActivity$1$1$3;",
+      "Lcom/example/emptyactivity/AdviseActivity$1$1;",
+      "Lcom/example/emptyactivity/AdviseActivity$1;",
+      "Lcom/example/emptyactivity/AdviseActivity;",
+      "Lcom/example/emptyactivity/FirstActivity$1;",
+      "Lcom/example/emptyactivity/FirstActivity$2$1;",
+      "Lcom/example/emptyactivity/FirstActivity$2$2;",
+      "Lcom/example/emptyactivity/FirstActivity$2$3;",
+      "Lcom/example/emptyactivity/FirstActivity$2;",
+      "Lcom/example/emptyactivity/FirstActivity$3;",
+      "Lcom/example/emptyactivity/FirstActivity$4;",
+      "Lcom/example/emptyactivity/FirstActivity$5;",
+      "Lcom/example/emptyactivity/FirstActivity$6$1$1;",
+      "Lcom/example/emptyactivity/FirstActivity$6$1$2;",
+      "Lcom/example/emptyactivity/FirstActivity$6$1$3;",
+      "Lcom/example/emptyactivity/FirstActivity$6$1;",
+      "Lcom/example/emptyactivity/FirstActivity$6;",
+      "Lcom/example/emptyactivity/FirstActivity;",
+      "Lcom/example/emptyactivity/R$color;",
+      "Lcom/example/emptyactivity/R$drawable;",
+      "Lcom/example/emptyactivity/R$id;",
+      "Lcom/example/emptyactivity/R$layout;",
+      "Lcom/example/emptyactivity/R$menu;",
+      "Lcom/example/emptyactivity/R$mipmap;",
+      "Lcom/example/emptyactivity/R$raw;",
+      "Lcom/example/emptyactivity/R$string;",
+      "Lcom/example/emptyactivity/R$style;",
+      "Lcom/example/emptyactivity/R$xml;",
+      "Lcom/example/emptyactivity/R;",
+      "Lcom/example/emptyactivity/SecondActivity$$ExternalSyntheticLambda0;",
+      "Lcom/example/emptyactivity/SecondActivity$$ExternalSyntheticLambda1;",
+      "Lcom/example/emptyactivity/SecondActivity;",
+      "Lnet/micode/myapplication/MainActivity$$ExternalSyntheticLambda0;",
+      "Lnet/micode/myapplication/MainActivity;"
+    ],
+    "launchers": [
+      {
+        "class": "com.example.emptyactivity.MainActivity",
+        "has_dex_class_definition": false
+      },
+      {
+        "class": "com.example.emptyactivity.FirstActivity",
+        "has_dex_class_definition": true
+      }
+    ],
+    "aapt2_badging": {
+      "exit_code": 0,
+      "stdout": "package: name='com.example.emptyactivity' versionCode='1' versionName='1.0' platformBuildVersionName='14' platformBuildVersionCode='34' compileSdkVersion='34' compileSdkVersionCodename='14'\r\nminSdkVersion:'24'\r\ntargetSdkVersion:'34'\r\nuses-permission: name='android.permission.INTERNET'\r\nuses-permission: name='android.permission.VIBRATE'\r\nuses-permission: name='com.example.emptyactivity.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'\r\napplication-label:'智慧待办'\r\napplication-label-af:'智慧待办'\r\napplication-label-am:'智慧待办'\r\napplication-label-ar:'智慧待办'\r\napplication-label-as:'智慧待办'\r\napplication-label-az:'智慧待办'\r\napplication-label-be:'智慧待办'\r\napplication-label-bg:'智慧待办'\r\napplication-label-bn:'智慧待办'\r\napplication-label-bs:'智慧待办'\r\napplication-label-ca:'智慧待办'\r\napplication-label-cs:'智慧待办'\r\napplication-label-da:'智慧待办'\r\napplication-label-de:'智慧待办'\r\napplication-label-el:'智慧待办'\r\napplication-label-en-AU:'智慧待办'\r\napplication-label-en-CA:'智慧待办'\r\napplication-label-en-GB:'智慧待办'\r\napplication-label-en-IN:'智慧待办'\r\napplication-label-en-XC:'智慧待办'\r\napplication-label-es:'智慧待办'\r\napplication-label-es-419:'智慧待办'\r\napplication-label-es-US:'智慧待办'\r\napplication-label-et:'智慧待办'\r\napplication-label-eu:'智慧待办'\r\napplication-label-fa:'智慧待办'\r\napplication-label-fi:'智慧待办'\r\napplication-label-fr:'智慧待办'\r\napplication-label-fr-CA:'智慧待办'\r\napplication-label-gl:'智慧待办'\r\napplication-label-gu:'智慧待办'\r\napplication-label-hi:'智慧待办'\r\napplication-label-hr:'智慧待办'\r\napplication-label-hu:'智慧待办'\r\napplication-label-hy:'智慧待办'\r\napplication-label-in:'智慧待办'\r\napplication-label-is:'智慧待办'\r\napplication-label-it:'智慧待办'\r\napplication-label-iw:'智慧待办'\r\napplication-label-ja:'智慧待办'\r\napplication-label-ka:'智慧待办'\r\napplication-label-kk:'智慧待办'\r\napplication-label-km:'智慧待办'\r\napplication-label-kn:'智慧待办'\r\napplication-label-ko:'智慧待办'\r\napplication-label-ky:'智慧待办'\r\napplication-label-lo:'智慧待办'\r\napplication-label-lt:'智慧待办'\r\napplication-label-lv:'智慧待办'\r\napplication-label-mk:'智慧待办'\r\napplication-label-ml:'智慧待办'\r\napplication-label-mn:'智慧待办'\r\napplication-label-mr:'智慧待办'\r\napplication-label-ms:'智慧待办'\r\napplication-label-my:'智慧待办'\r\napplication-label-nb:'智慧待办'\r\napplication-label-ne:'智慧待办'\r\napplication-label-nl:'智慧待办'\r\napplication-label-or:'智慧待办'\r\napplication-label-pa:'智慧待办'\r\napplication-label-pl:'智慧待办'\r\napplication-label-pt:'智慧待办'\r\napplication-label-pt-BR:'智慧待办'\r\napplication-label-pt-PT:'智慧待办'\r\napplication-label-ro:'智慧待办'\r\napplication-label-ru:'智慧待办'\r\napplication-label-si:'智慧待办'\r\napplication-label-sk:'智慧待办'\r\napplication-label-sl:'智慧待办'\r\napplication-label-sq:'智慧待办'\r\napplication-label-sr:'智慧待办'\r\napplication-label-sr-Latn:'智慧待办'\r\napplication-label-sv:'智慧待办'\r\napplication-label-sw:'智慧待办'\r\napplication-label-ta:'智慧待办'\r\napplication-label-te:'智慧待办'\r\napplication-label-th:'智慧待办'\r\napplication-label-tl:'智慧待办'\r\napplication-label-tr:'智慧待办'\r\napplication-label-uk:'智慧待办'\r\napplication-label-ur:'智慧待办'\r\napplication-label-uz:'智慧待办'\r\napplication-label-vi:'智慧待办'\r\napplication-label-zh-CN:'智慧待办'\r\napplication-label-zh-HK:'智慧待办'\r\napplication-label-zh-TW:'智慧待办'\r\napplication-label-zu:'智慧待办'\r\napplication-icon-160:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-icon-240:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-icon-320:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-icon-480:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-icon-640:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-icon-65534:'res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication: label='智慧待办' icon='res/mipmap-xxxhdpi-v4/smarttodoicon_256.png'\r\napplication-debuggable\r\nlaunchable-activity: name='com.example.emptyactivity.MainActivity'  label='' icon=''\r\nlaunchable-activity: name='com.example.emptyactivity.FirstActivity'  label='智慧待办' icon=''\r\nfeature-group: label=''\r\n  uses-feature: name='android.hardware.faketouch'\r\n  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'\r\nmain\r\nother-activities\r\nother-receivers\r\nsupports-screens: 'small' 'normal' 'large' 'xlarge'\r\nsupports-any-density: 'true'\r\nlocales: '--_--' 'af' 'am' 'ar' 'as' 'az' 'be' 'bg' 'bn' 'bs' 'ca' 'cs' 'da' 'de' 'el' 'en-AU' 'en-CA' 'en-GB' 'en-IN' 'en-XC' 'es' 'es-419' 'es-US' 'et' 'eu' 'fa' 'fi' 'fr' 'fr-CA' 'gl' 'gu' 'hi' 'hr' 'hu' 'hy' 'in' 'is' 'it' 'iw' 'ja' 'ka' 'kk' 'km' 'kn' 'ko' 'ky' 'lo' 'lt' 'lv' 'mk' 'ml' 'mn' 'mr' 'ms' 'my' 'nb' 'ne' 'nl' 'or' 'pa' 'pl' 'pt' 'pt-BR' 'pt-PT' 'ro' 'ru' 'si' 'sk' 'sl' 'sq' 'sr' 'sr-Latn' 'sv' 'sw' 'ta' 'te' 'th' 'tl' 'tr' 'uk' 'ur' 'uz' 'vi' 'zh-CN' 'zh-HK' 'zh-TW' 'zu'\r\ndensities: '160' '240' '320' '480' '640' '65534'\r\n",
+      "stderr": ""
+    }
+  },
+  "credential_declarations_present": {
+    "API_KEY": true,
+    "SECRET_KEY": true
+  },
+  "source_credential_literals_present_in_apk_dex": {
+    "API_KEY": true,
+    "SECRET_KEY": true
+  },
+  "preview_python_ast": "pass",
+  "source_file_sha256": {
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\androidTest\\java\\net\\micode\\myapplication\\ExampleInstrumentedTest.java": "353bedf3939d77946f8251403f569f10da21e12fad6334998d2ae702142e811a",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\androidTest_notecraft\\java\\com\\example\\emptyactivity_notecraft\\ExampleInstrumentedTest.java": "ac1148a49a575c4fdf72b1e9771b3947f542e902710c01ce220f8818402dbca4",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\androidTest_notecraft\\java\\net\\micode\\myapplication\\ExampleInstrumentedTest.java": "353bedf3939d77946f8251403f569f10da21e12fad6334998d2ae702142e811a",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\androidTest_notecraft\\java\\net\\micode\\notecraft\\ExampleInstrumentedTest.java": "8609eb2532939c6dd9dc7bc54f8b7fc5d3eada9bd1efc1716a0c111322dd0473",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\baidu\\com\\ChatCompletion.java": "46b80bebaad3e2c42749433be72b08c27d569fb08f1ad45bd9b109e7a0af12b2",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\baidu\\com\\RequestBodyGenerator.java": "1c0d76bbc6c6447ad7e8d6f02c27303a7b875c671bef830cfaa34dad902efba8",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\baidu\\com\\Sample.java": "d10c744e7bb2c5c2fe3d9792a9b172892dd85fcbb33079a029d2675958e9bc66",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\com\\example\\emptyactivity\\AdviseActivity.java": "83c5c9cc901ed6abec776392b1c323b0ed20e0d5b93cbfa3e48dbed1db56b9c9",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\com\\example\\emptyactivity\\FirstActivity.java": "be6db200e0c3040aaee3c4fc86b28a7d3141acbc8295074d75ea4a64bad3786a",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\com\\example\\emptyactivity\\SecondActivity.java": "07e7bbc9c8183b438bb067a700c0e3d51fa5c107b0b97e5c4de4c1405951b724",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\net\\micode\\myapplication\\MainActivity.java": "89c5aa6312fae8a98198fdd2af2fcb725eeccdd704f279fb586e02266e425069",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\java\\net\\micode\\notecraft\\MainActivity.java": "3d3153631dee743d7df2d0b4ea8e02f7541a3897c9370fbf4cc90cd27270d97d",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\test\\java\\com\\example\\emptyactivity_notecraft\\ExampleUnitTest.java": "da20028090aab52a6e857fdfb185308d4252dffb375529c1c8d4a6d01c06c062",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\test\\java\\net\\micode\\myapplication\\ExampleUnitTest.java": "8c27989cbb86d9d3a869a813ce616a83a7aa1fc7bff69a3e3ed68410bd1d4423",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\test\\java\\net\\micode\\notecraft\\ExampleUnitTest.java": "fa174c07bfc2b3e915f755e03ae9db218c4bd6ccace90d5d851ef3b2d9da6eeb",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\NotesApplication.java": "dea4cf5c9cda73ee6a6d1226960b1e2f902c6ca3ffb242ae119c1eb3f1e46ebc",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\data\\Contact.java": "d51a1ba258701a6034d10db417f0f9fa480d42ac206b7cbff3c174dd3d556e16",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\data\\Notes.java": "0479aa9f79e0c9667a12c8fbcab19abb4f1475e96d0ab24c515ffe5d48ce7ae5",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesDatabaseHelper.java": "7a7002cbf72579780c7e017fbe33c651f8a917e4135572a9621db5350322a117",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesProvider.java": "0cf9cdd2bc878211364f811bb794cce178e050a83170852c86bba659fbe1eb62",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\model\\Note.java": "ca24de8715efbf56368079c65d5e274506a9d9339b2372d52f24c266ee042c1f",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\model\\WorkingNote.java": "bbc7ba925e0f0f2ffd5e10e48019ad077c77208689c49ae820d97775d44f74ab",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\tool\\AppLanguage.java": "f0b2dea1efc4ccfb453853db37cdbbb9b0864dea7ce9b7ac6e247eab6a603ac4",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\tool\\BackupUtils.java": "aad27173699bd8e234767f687ac7577aaebf55871e5c2a7e04db1c3d1dec3050",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\tool\\DataUtils.java": "6b4ed99d7fbf9c9caa50ba7b4bba0f1690777c1f6cf210eab4ab89eb9325331f",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\tool\\GTaskStringUtils.java": "9a67203d50ad2f1e9a3701808ec3ed169c6e34ad2dae837273805a24746d7c0d",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\tool\\ResourceParser.java": "d2d43a443da86312bb0a75fc55e8b7d9beb746dd009b26fa36cb4876e443291d",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmAlertActivity.java": "5914dfb569df6ead76eb2ae6f7f52ed4c1ec3e22c2efeaf4735f38e56a0ee66f",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmInitReceiver.java": "f8df6fdc2c4e08d6627426cc03db6552560f6d43839cadce7e29b96484aff538",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmReceiver.java": "ead0da3d7659b6630a82989dddb0cbf24a8046de3162656bbb2fca4824275844",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePicker.java": "d2a820af13265632ffac20ae150905ac34ef76ba02049c7f01ccb18333ea666f",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePickerDialog.java": "432eb0e2ec241f36ba7998533fbdb39a7ebf35858f490c91dd3585781d77b584",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DropdownMenu.java": "5d03fa193cdebe9b328c1c52b1f812878ba5d38501170bcba58f2c70e8c3a28e",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\FoldersListAdapter.java": "06bccdc608cb190a1d25fb1f0e0640a100952f4bac23476ee795897b5a8b164b",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\LocalizedActivity.java": "9adf0b965eb4d32d8b71736c273bb7ad6d7bb1e3e07337de0886d601eb2839ed",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditActivity.java": "9d0f3a9b75382b3b2352a241a541819fa2eb58d38c2bfdc873ea7830d66b8ae6",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditText.java": "dc5097a21bfe5bd18576fc623289add60c0c9d55567f6c1a4fead51998053680",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteItemData.java": "22c2615e2720b422fb5db4e9840b026c08df7ec227ae072277cf451b963078fb",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListActivity.java": "8392030b95b3afb5233e89b143a17623f1dfb9fca0869b5b48f5087163c55ca1",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListAdapter.java": "5a3e047341ac0a1e33e4657cc4ab30a4bcf428960f994ba7a4c1b68e1df3239a",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListItem.java": "4a50e1f4990a696322cacb0459ac74c93b46744741ee249bebbe18336fe71bdd",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesPreferenceActivity.java": "f6f82994ecafeb3ea9e2aabf3489388dbfd0d5129c07eae57d424f6006e29ed5",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider.java": "84c00928e0ac8dc53bf37db27546a4ad20913d0f7052a5302194828dae497c42",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_2x.java": "a893fdfa0015cae274e6955dada37827ae04ceef94d481392c8806760b937df7",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_4x.java": "8a3021024a7d0ceee0440b91c6bda80c62926d966add7f834be638102eed08ac",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\MetaData.java": "4062664afd76c8a03038d70fce0bddeb4eff94b42bcc0727a11fc3ed8285c3b1",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Node.java": "25ae2adffe0168fda19ff544513c67245ac691cdeccff2085822f025b76efa05",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlData.java": "cd1f2fafde0d2784396a35b8cde22f1cd0f47739d5f9709629ee0fe9c77d4b54",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlNote.java": "b46a1678c53178e0ebce6e1479fe09bbddfbb7939e85e54409ae82e315f17959",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Task.java": "7f9e835b369c8fba08879c33a24ab6e87d6c4093b998a100883d2d015b0a955a",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\TaskList.java": "cb34597866ab0d62654ea34913c48c23250a628fc7c38bf417e775e48c7f3c4b",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\ActionFailureException.java": "695377ca2b1f441510e6b0e2efb93ff93ea148d731b2fdac23555cc0a2f9bffc",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\NetworkFailureException.java": "5eced3ba8f411e8d499025374ca547ac661ed7ed180575543ffae5bd6f84fa39",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskASyncTask.java": "5908e0543627375287d87c6c56a68510804b65df7c06fdefbbfb8e76687f7e98",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskClient.java": "36276a987a2891dfadea6857a9bed49cee0b8c9514fef5778fe817a6c27b546b",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskManager.java": "767b68b0c6d8c6443f48d18e0c10b5fa6b613604770873fa8cd3d8aa7d993947",
+    ".work\\CSU_SE_TEST\\repo\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskSyncService.java": "922779b8db4fd6fc7f0c16f82eddc8aa7eeb3f3f546fae5930a5122ae787f2a7",
+    ".work\\android-preview\\server.py": "a021535448d7de4d9f062589d823b5ae1fb1c84d73ebff568e1ec40d9d569353",
+    "start-chinese-notes.ps1": "473890f7b269ad6b7f71f9782b5bf2561389bca063489945ee592afcadc3a482",
+    "启动中文版便签.cmd": "3f3afcc29058a8145b0a3860c81df4de9b5ac93233af8387309be6f9494693ff",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\src\\main\\AndroidManifest.xml": "39fb07f7be1d425c34fad07039f4371d8cf530ab8dff154e9fb6420d296b7d8e",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\build.gradle": "e76cb456b097105630f1b76f01478d60bdd859a6aa27dbfc4f85e2a56c587ce2",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\app\\build.gradle.kts": "33d5a9889c84c39a96db0ead592582ea11bd6909dcf015e326fab69d12fd200b",
+    "补充文件\\SmartTodo-NoteCraft\\Smarttodo-NoteCraft\\settings.gradle": "751fe51711eb9a2da0b0c392599e484df46f0ada5c0e9faf45d92ac8b9853089"
+  },
+  "frontend": {
+    "path": "D:\\SE\\软件工程项目实验\\.work\\CSU_SE_TEST\\repo",
+    "branch": {
+      "exit_code": 0,
+      "stdout": "frontend\n",
+      "stderr": ""
+    },
+    "commit": {
+      "exit_code": 0,
+      "stdout": "9ce569894ef26d1a5e6365703f8eb2bba616be04\n",
+      "stderr": ""
+    },
+    "status": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "worktrees": {
+      "exit_code": 0,
+      "stdout": "D:/SE/软件工程项目实验/.work/CSU_SE_TEST/repo                          9ce5698 [frontend]\nD:/SE/软件工程项目实验/.work/CSU_SE_TEST/code-optimization-zh          3057dc9 [code-optimization-zh]\nD:/SE/软件工程项目实验/.work/CSU_SE_TEST/feature-expansion             9ce5698 [feature-expansion]\n",
+      "stderr": ""
+    }
+  },
+  "startup_check_only": {
+    "exit_code": 0,
+    "stdout": "项目目录：D:\\SE\\软件工程项目实验\nAndroid SDK：C:\\Users\\32536\\AppData\\Local\\Android\\Sdk\n模拟器：ChinesePreview (emulator-5556)\n环境文件检查通过。\n",
+    "stderr": ""
+  }
+}

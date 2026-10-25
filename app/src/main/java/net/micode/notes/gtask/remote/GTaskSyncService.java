@@ -64,26 +64,37 @@ public class GTaskSyncService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         mSyncTask = null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent == null) {
+            stopSelf(startId);
+            return START_NOT_STICKY;
+        }
         Bundle bundle = intent.getExtras();
         if (bundle != null && bundle.containsKey(ACTION_STRING_NAME)) {
             switch (bundle.getInt(ACTION_STRING_NAME, ACTION_INVALID)) {
                 case ACTION_START_SYNC:
-                    startSync();
+                    // Legacy ClientLogin / unofficial Tasks protocol is not supported.
+                    // Keep local data intact and never report an unverified remote success.
+                    sendBroadcast(getString(net.micode.notes.R.string.legacy_sync_disabled));
+                    stopSelf(startId);
                     break;
                 case ACTION_CANCEL_SYNC:
                     cancelSync();
+                    stopSelf(startId);
                     break;
                 default:
+                    stopSelf(startId);
                     break;
             }
-            return START_STICKY;
+            return START_NOT_STICKY;
         }
-        return super.onStartCommand(intent, flags, startId);
+        stopSelf(startId);
+        return START_NOT_STICKY;
     }
 
     @Override
@@ -100,16 +111,16 @@ public class GTaskSyncService extends Service {
     public void sendBroadcast(String msg) {
         mSyncProgress = msg;
         Intent intent = new Intent(GTASK_SERVICE_BROADCAST_NAME);
+        intent.setPackage(getPackageName());
         intent.putExtra(GTASK_SERVICE_BROADCAST_IS_SYNCING, mSyncTask != null);
         intent.putExtra(GTASK_SERVICE_BROADCAST_PROGRESS_MSG, msg);
         sendBroadcast(intent);
     }
 
     public static void startSync(Activity activity) {
-        GTaskManager.getInstance().setActivityContext(activity);
-        Intent intent = new Intent(activity, GTaskSyncService.class);
-        intent.putExtra(GTaskSyncService.ACTION_STRING_NAME, GTaskSyncService.ACTION_START_SYNC);
-        activity.startService(intent);
+        android.widget.Toast.makeText(activity, net.micode.notes.R.string.legacy_sync_disabled,
+                android.widget.Toast.LENGTH_LONG).show();
+        /* The old account protocol must be replaced and verified before re-enabling. */
     }
 
     public static void cancelSync(Context context) {

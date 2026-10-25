@@ -149,6 +149,10 @@ public class NotesListActivity extends LocalizedActivity implements OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 104) {
+            if (resultCode == RESULT_OK && data != null && data.getData() != null) exportDocument(data.getData());
+            return;
+        }
         if (resultCode == RESULT_OK
                 && (requestCode == REQUEST_CODE_OPEN_NODE || requestCode == REQUEST_CODE_NEW_NODE)) {
             mNotesListAdapter.changeCursor(null);
@@ -207,6 +211,11 @@ public class NotesListActivity extends LocalizedActivity implements OnClickListe
     protected void onStart() {
         super.onStart();
         startAsyncNotesListQuery();
+        String key = net.micode.notes.tool.DraftStore.pending(this);
+        if (key != null) {
+            startActivity(new Intent(this, NoteEditActivity.class).setAction(Intent.ACTION_INSERT_OR_EDIT)
+                    .putExtra("draftKey", key));
+        }
     }
 
     private void initResources() {
@@ -542,6 +551,10 @@ public class NotesListActivity extends LocalizedActivity implements OnClickListe
         mCurrentFolderId = data.getId();
         startAsyncNotesListQuery();
         if (data.getId() == Notes.ID_CALL_RECORD_FOLDER) {
+            if (android.os.Build.VERSION.SDK_INT >= 23 && checkSelfPermission(android.Manifest.permission.READ_CONTACTS)
+                    != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS}, 502);
+            }
             mState = ListEditState.CALL_RECORD_FOLDER;
             mAddNewNote.setVisibility(View.GONE);
         } else {
@@ -565,6 +578,17 @@ public class NotesListActivity extends LocalizedActivity implements OnClickListe
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
             inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
+        if (requestCode == 502) {
+            if (results.length == 0 || results[0] != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, R.string.contacts_denied, Toast.LENGTH_LONG).show();
+            }
+            startAsyncNotesListQuery();
         }
     }
 
@@ -806,44 +830,26 @@ public class NotesListActivity extends LocalizedActivity implements OnClickListe
     }
 
     private void exportNoteToText() {
-        final BackupUtils backup = BackupUtils.getInstance(NotesListActivity.this);
-        new AsyncTask<Void, Void, Integer>() {
+        Intent picker = new Intent(Intent.ACTION_CREATE_DOCUMENT).setType("text/plain")
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .putExtra(Intent.EXTRA_TITLE, "notes-" + System.currentTimeMillis() + ".txt");
+        try { startActivityForResult(picker, 104); }
+        catch (android.content.ActivityNotFoundException e) {
+            Toast.makeText(this, R.string.error_sdcard_export, Toast.LENGTH_LONG).show();
+        }
+    }
 
-            @Override
-            protected Integer doInBackground(Void... unused) {
-                return backup.exportToText();
+    private void exportDocument(android.net.Uri uri) {
+        new AsyncTask<Void, Void, Boolean>() {
+            protected Boolean doInBackground(Void... unused) {
+                try { BackupUtils.exportToText(getApplicationContext(), uri); return true; }
+                catch (IOException | RuntimeException e) { return false; }
             }
-
-            @Override
-            protected void onPostExecute(Integer result) {
-                if (result == BackupUtils.STATE_SD_CARD_UNMOUONTED) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NotesListActivity.this);
-                    builder.setTitle(NotesListActivity.this
-                            .getString(R.string.failed_sdcard_export));
-                    builder.setMessage(NotesListActivity.this
-                            .getString(R.string.error_sdcard_unmounted));
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.show();
-                } else if (result == BackupUtils.STATE_SUCCESS) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NotesListActivity.this);
-                    builder.setTitle(NotesListActivity.this
-                            .getString(R.string.success_sdcard_export));
-                    builder.setMessage(NotesListActivity.this.getString(
-                            R.string.format_exported_file_location, backup
-                                    .getExportedTextFileName(), backup.getExportedTextFileDir()));
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.show();
-                } else if (result == BackupUtils.STATE_SYSTEM_ERROR) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NotesListActivity.this);
-                    builder.setTitle(NotesListActivity.this
-                            .getString(R.string.failed_sdcard_export));
-                    builder.setMessage(NotesListActivity.this
-                            .getString(R.string.error_sdcard_export));
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.show();
-                }
+            protected void onPostExecute(Boolean success) {
+                if (!isFinishing() && !isDestroyed()) Toast.makeText(NotesListActivity.this,
+                        success ? R.string.success_sdcard_export : R.string.error_sdcard_export,
+                        Toast.LENGTH_LONG).show();
             }
-
         }.execute();
     }
 

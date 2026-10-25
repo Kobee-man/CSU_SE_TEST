@@ -1,0 +1,27 @@
+﻿[
+    {
+        "Path":  "D:\\SE\\软件工程项目实验\\交付物\\安装包\\便签-中文版-debug.apk",
+        "Bytes":  2073474,
+        "SHA256":  "9C52E2508A8E021F6F7C208C7B0FE5E5418C6EF8D9FCCF8A9AB4203A34E3C250"
+    },
+    {
+        "Path":  "D:\\SE\\软件工程项目实验\\.work\\CSU_SE_TEST\\repo\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+        "Bytes":  2073474,
+        "SHA256":  "9C52E2508A8E021F6F7C208C7B0FE5E5418C6EF8D9FCCF8A9AB4203A34E3C250"
+    },
+    {
+        "Path":  "D:\\SE\\软件工程项目实验\\.work\\CSU_SE_TEST\\code-optimization-zh\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+        "Bytes":  1985907,
+        "SHA256":  "83751122345B20AF4677904B721C727D86BA318FCA39E7056C14D4BE2919AF6F"
+    },
+    {
+        "Path":  "D:\\SE\\软件工程项目实验\\.work\\CSU_SE_TEST\\feature-expansion\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+        "Bytes":  null,
+        "SHA256":  "MISSING"
+    },
+    {
+        "Path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+        "Bytes":  2018598,
+        "SHA256":  "84F1FD64308ADCCBFA61EA466CF5A462186DBCEC1FEB1FECFA8293ABA5EABE09"
+    }
+]

@@ -40,24 +40,20 @@ public class AlarmInitReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (intent == null || !(Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())
+                || AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED.equals(intent.getAction()))) return;
         long currentDate = System.currentTimeMillis();
         Cursor c = context.getContentResolver().query(Notes.CONTENT_NOTE_URI,
                 PROJECTION,
-                NoteColumns.ALERTED_DATE + ">? AND " + NoteColumns.TYPE + "=" + Notes.TYPE_NOTE,
+                NoteColumns.ALERTED_DATE + ">? AND " + NoteColumns.PARENT_ID + "<>"
+                        + Notes.ID_TRASH_FOLER + " AND " + NoteColumns.TYPE + "=" + Notes.TYPE_NOTE,
                 new String[] { String.valueOf(currentDate) },
                 null);
 
         if (c != null) {
             if (c.moveToFirst()) {
                 do {
-                    long alertDate = c.getLong(COLUMN_ALERTED_DATE);
-                    Intent sender = new Intent(context, AlarmReceiver.class);
-                    sender.setData(ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, c.getLong(COLUMN_ID)));
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, sender,
-                            PendingIntent.FLAG_IMMUTABLE);
-                    AlarmManager alermManager = (AlarmManager) context
-                            .getSystemService(Context.ALARM_SERVICE);
-                    alermManager.set(AlarmManager.RTC_WAKEUP, alertDate, pendingIntent);
+                    AlarmScheduler.refresh(context, c.getLong(COLUMN_ID));
                 } while (c.moveToNext());
             }
             c.close();

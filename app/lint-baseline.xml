@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 9.4.0" type="baseline" client="gradle" dependencies="false" name="AGP (9.4.0)" variant="all" version="9.4.0">
+
+    <issue
+        id="ScopedStorage"
+        message="WRITE_EXTERNAL_STORAGE is deprecated (and is not granted) when targeting Android 13+. If you need to write to shared storage, use the `MediaStore.createWriteRequest` intent."
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; />"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="20"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="GestureBackNavigation"
+        message="`onBackPressed` is no longer called for back gestures; migrate to AndroidX&apos;s backward compatible `OnBackPressedDispatcher`"
+        errorLine1="    public void onBackPressed() {"
+        errorLine2="                ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NoteEditActivity.java"
+            line="443"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GestureBackNavigation"
+        message="`onBackPressed` is no longer called for back gestures; migrate to AndroidX&apos;s backward compatible `OnBackPressedDispatcher`"
+        errorLine1="    public void onBackPressed() {"
+        errorLine2="                ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="662"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ScrollViewSize"
+        message="This LinearLayout should use `android:layout_height=&quot;wrap_content&quot;`"
+        errorLine1="                    android:layout_height=&quot;fill_parent&quot;>"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="106"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="            mSharedPrefs.edit().putInt(PREFERENCE_FONT_SIZE, mFontSizeId).commit();"
+        errorLine2="                                                                          ~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NoteEditActivity.java"
+            line="429"
+            column="75"/>
+    </issue>
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="                sp.edit().putBoolean(PREFERENCE_ADD_INTRODUCTION, true).commit();"
+        errorLine2="                                                                        ~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="198"
+            column="73"/>
+    </issue>
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="            editor.commit();"
+        errorLine2="                   ~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="328"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="        editor.commit();"
+        errorLine2="               ~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="358"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="ApplySharedPref"
+        message="Consider using `apply()` instead; `commit` writes its data to persistent storage immediately, whereas `apply` will handle it in the background"
+        errorLine1="        editor.commit();"
+        errorLine2="               ~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="382"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toLowerCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="        if (!(mAccount.name.toLowerCase().endsWith(&quot;gmail.com&quot;) || mAccount.name.toLowerCase()"
+        errorLine2="                            ~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskClient.java"
+            line="138"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toLowerCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="        if (!(mAccount.name.toLowerCase().endsWith(&quot;gmail.com&quot;) || mAccount.name.toLowerCase()"
+        errorLine2="                                                                                 ~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskClient.java"
+            line="138"
+            column="82"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:windowLightStatusBar` requires API level 23 (current min is 21)"
+        errorLine1="        &lt;item name=&quot;android:windowLightStatusBar&quot;>true&lt;/item>"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="73"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:windowLightNavigationBar` requires API level 27 (current min is 21)"
+        errorLine1="        &lt;item name=&quot;android:windowLightNavigationBar&quot;>true&lt;/item>"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="75"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="NotificationPermission"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission"
+        errorLine1="        mNotifiManager.notify(GTASK_SYNC_NOTIFICATION_ID, notification);"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskASyncTask.java"
+            line="86"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `localeConfig` is only used in API level 33 and higher (current min is 21)"
+        errorLine1="        android:localeConfig=&quot;@xml/locales_config&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="WrongConstant"
+        message="Must be one of: View.VISIBLE, View.INVISIBLE, View.GONE"
+        errorLine1="                    -                    View.VISIBLE);"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NoteEditActivity.java"
+            line="420"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="AppBundleLocaleChanges"
+        message="Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the `bundle` configuration"
+        errorLine1="                configuration.setLocales(system.getLocales());"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/tool/AppLanguage.java"
+            line="79"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        View view = LayoutInflater.from(this).inflate(R.layout.note_edit_list_item, null);"
+        errorLine2="                                                                                    ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NoteEditActivity.java"
+            line="707"
+            column="85"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        mNotesListView.addFooterView(LayoutInflater.from(this).inflate(R.layout.note_list_footer, null),"
+        errorLine2="                                                                                                  ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="217"
+            column="99"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="                    R.layout.note_list_dropdown_menu, null);"
+        errorLine2="                                                      ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="256"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        View header = LayoutInflater.from(this).inflate(R.layout.settings_header, null);"
+        errorLine2="                                                                                  ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="111"
+            column="83"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        View titleView = LayoutInflater.from(this).inflate(R.layout.account_dialog_title, null);"
+        errorLine2="                                                                                          ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="232"
+            column="91"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        View titleView = LayoutInflater.from(this).inflate(R.layout.account_dialog_title, null);"
+        errorLine2="                                                                                          ~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="288"
+            column="91"/>
+    </issue>
+
+    <issue
+        id="RedundantLabel"
+        message="Redundant label can be removed"
+        errorLine1="            android:label=&quot;@string/app_name&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="39"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="RedundantLabel"
+        message="Redundant label can be removed"
+        errorLine1="            android:label=&quot;@string/app_name&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="133"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnspecifiedRegisterReceiverFlag"
+        message="`mReceiver` is missing `RECEIVER_EXPORTED` or `RECEIVER_NOT_EXPORTED` flag for unprotected broadcasts registered for net.micode.notes.gtask.remote.gtask_sync_service"
+        errorLine1="            registerReceiver(mReceiver, filter);"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesPreferenceActivity.java"
+            line="107"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Orientation"
+        message="Wrong orientation? No orientation specified, and the default is horizontal, yet this layout has multiple children where at least one has `layout_width=&quot;match_parent&quot;`"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="104"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;file_path&quot; is not translated in &quot;zh&quot; (Chinese)"
+        errorLine1="    &lt;string name=&quot;file_path&quot;>/MIUI/notes/&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="39"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;file_name_txt_format&quot; is not translated in &quot;zh&quot; (Chinese)"
+        errorLine1="    &lt;string name=&quot;file_name_txt_format&quot;>notes_%s.txt&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="40"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;format_folder_files_count&quot; is not translated in &quot;zh&quot; (Chinese)"
+        errorLine1="    &lt;string name=&quot;format_folder_files_count&quot;>(%d)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="PluralsCandidate"
+        message="Formatting %d followed by words (&quot;selected&quot;): This should probably be a plural rather than a string"
+        errorLine1="    &lt;string name=&quot;menu_select_title&quot;>%d selected&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="51"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="PluralsCandidate"
+        message="Formatting %d followed by words (&quot;notes&quot;): This should probably be a plural rather than a string"
+        errorLine1="    &lt;string name=&quot;alert_message_delete_notes&quot;>Confirm to delete the selected %d notes?&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="75"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="PluralsCandidate"
+        message="Formatting %d followed by words (&quot;notes&quot;): This should probably be a plural rather than a string"
+        errorLine1="    &lt;string name=&quot;format_move_notes_to_folder&quot;>Have moved selected %1$d notes to %2$s folder&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="77"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnsafeImplicitIntentLaunch"
+        message="The intent action `net.micode.notes.gtask.remote.gtask_sync_service (used to send a broadcast)` matches the intent filter of a non-exported receiver, registered via a call to `Context.registerReceiver`, or similar. If you are trying to invoke this specific receiver via the action then you should use `Intent.setPackage(&lt;APPLICATION_ID>)`."
+        errorLine1="        Intent intent = new Intent(GTASK_SERVICE_BROADCAST_NAME);"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskSyncService.java"
+            line="102"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="UnsafeProtectedBroadcastReceiver"
+        message="This broadcast receiver declares an intent-filter for a protected broadcast action string, which can only be sent by the system, not third-party applications. However, the receiver&apos;s `onReceive` method does not appear to call `getAction` to ensure that the received Intent&apos;s action string matches the expected value, potentially making it possible for another actor to send a spoofed intent with no action string or a different action string and cause undesired behavior."
+        errorLine1="    public void onReceive(Context context, Intent intent) {"
+        errorLine2="                ~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/AlarmInitReceiver.java"
+            line="42"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ExportedContentProvider"
+        message="Exported content providers can provide access to potentially sensitive data"
+        errorLine1="        &lt;provider"
+        errorLine2="         ~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="82"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="This field leaks a context object"
+        errorLine1="    private Context mContext;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskASyncTask.java"
+            line="40"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `GTaskManager` which has field `mActivity` pointing to `Activity`); this is a memory leak"
+        errorLine1="    private static GTaskManager mInstance = null;"
+        errorLine2="            ~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskManager.java"
+            line="64"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `GTaskASyncTask` which has field `mContext` pointing to `Context`); this is a memory leak"
+        errorLine1="    private static GTaskASyncTask mSyncTask = null;"
+        errorLine2="            ~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskSyncService.java"
+            line="41"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="This `AsyncTask` class should be static or leaks might occur (anonymous android.os.AsyncTask)"
+        errorLine1="        new AsyncTask&lt;Void, Void, HashSet&lt;AppWidgetAttribute>>() {"
+        errorLine2="        ^">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="471"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="This `AsyncTask` class should be static or leaks might occur (anonymous android.os.AsyncTask)"
+        errorLine1="        new AsyncTask&lt;Void, Void, Integer>() {"
+        errorLine2="        ^">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="810"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="287"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="325"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="363"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="401"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="HandlerLeak"
+        message="This `Handler` class should be static or leaks might occur (net.micode.notes.ui.NotesListActivity.BackgroundQueryHandler)"
+        errorLine1="    private final class BackgroundQueryHandler extends AsyncQueryHandler {"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="418"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="UseValueOf"
+        message="Use `Long.valueOf(Notes.ID_ROOT_FOLDER)` instead"
+        errorLine1="                : new Long(Notes.ID_ROOT_FOLDER);"
+        errorLine2="                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/gtask/remote/GTaskManager.java"
+            line="610"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="    &lt;LinearLayout"
+        errorLine2="     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="143"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="    &lt;LinearLayout"
+        errorLine2="     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="273"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/app_background` with a theme that also paints a background (inferred theme is `@style/NoteTheme`)"
+        errorLine1="    android:background=&quot;@color/app_background&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="21"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/app_background` with a theme that also paints a background (inferred theme is `@style/NoteTheme`)"
+        errorLine1="    android:background=&quot;@color/app_background&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_list.xml"
+            line="24"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.array.menu_share_ways` appears to be unused"
+        errorLine1="    &lt;string-array name=&quot;menu_share_ways&quot;>"
+        errorLine2="                  ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/arrays.xml"
+            line="27"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.divider` appears to be unused"
+        errorLine1="    &lt;color name=&quot;divider&quot;>#1A1F1B16&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="63"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.ripple` appears to be unused"
+        errorLine1="    &lt;color name=&quot;ripple&quot;>#1F1F1B16&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="64"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.delete` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/delete.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.list_background` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/list_background.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.delete_remind_time_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;delete_remind_time_message&quot;>Delete reminder successfully&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="27"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.set_remind_time_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;set_remind_time_message&quot;>Set reminder&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.button_delete` appears to be unused"
+        errorLine1="    &lt;string name=&quot;button_delete&quot;>Delete&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="119"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.search` appears to be unused"
+        errorLine1="    &lt;string name=&quot;search&quot;>Notes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="126"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.plurals.search_results_title` appears to be unused"
+        errorLine1="    &lt;plurals name=&quot;search_results_title&quot;>"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="129"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.HighlightTextAppearancePrimary` appears to be unused"
+        errorLine1="    &lt;style name=&quot;HighlightTextAppearancePrimary&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="51"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.HighlightTextAppearanceSecondary` appears to be unused"
+        errorLine1="    &lt;style name=&quot;HighlightTextAppearanceSecondary&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="56"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.title_bar_bg` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/title_bar_bg.9.png"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `ScrollView` layout or its `LinearLayout` parent is unnecessary"
+        errorLine1="            &lt;ScrollView"
+        errorLine2="             ~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="95"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;notelist_string_info&quot;>...&lt;/string>"
+        errorLine2="                                        ~~~">
+        <location
+            file="src/main/res/values-zh-rCN/strings.xml"
+            line="25"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;notelist_string_info&quot;>...&lt;/string>"
+        errorLine2="                                        ~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="25"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;notelist_string_info&quot;>...&lt;/string>"
+        errorLine2="                                        ~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="25"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;ticker_syncing&quot;>同步便簽...&lt;/string>"
+        errorLine2="                                  ~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="83"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;ticker_syncing&quot;>Syncing notes...&lt;/string>"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="88"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_login&quot;>登陸%1$s...&lt;/string>"
+        errorLine2="                                       ~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="91"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_init_list&quot;>正在獲取服務器便籤列表...&lt;/string>"
+        errorLine2="                                           ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="92"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_syncing&quot;>正在同步本地便籤...&lt;/string>"
+        errorLine2="                                         ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="93"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_login&quot;>Logging into %1$s...&lt;/string>"
+        errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="96"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_init_list&quot;>Getting remote note list...&lt;/string>"
+        errorLine2="                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="97"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;sync_progress_syncing&quot;>Synchronize local notes with Google Task...&lt;/string>"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="98"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_blue.xml, src\main\res\drawable-hdpi\edit_blue.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_blue.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_blue.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_green.xml, src\main\res\drawable-hdpi\edit_green.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_green.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_green.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_red.xml, src\main\res\drawable-hdpi\edit_red.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_red.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_red.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_title_blue.xml, src\main\res\drawable-hdpi\edit_title_blue.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_title_blue.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_title_blue.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_title_green.xml, src\main\res\drawable-hdpi\edit_title_green.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_title_green.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_title_green.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_title_red.xml, src\main\res\drawable-hdpi\edit_title_red.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_title_red.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_title_red.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_title_white.xml, src\main\res\drawable-hdpi\edit_title_white.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_title_white.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_title_white.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_title_yellow.xml, src\main\res\drawable-hdpi\edit_title_yellow.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_title_yellow.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_title_yellow.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_white.xml, src\main\res\drawable-hdpi\edit_white.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_white.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_white.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\edit_yellow.xml, src\main\res\drawable-hdpi\edit_yellow.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/edit_yellow.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/edit_yellow.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\font_size_selector_bg.xml, src\main\res\drawable-hdpi\font_size_selector_bg.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/font_size_selector_bg.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/font_size_selector_bg.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_background.xml, src\main\res\drawable-hdpi\list_background.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_background.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_background.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_blue_down.xml, src\main\res\drawable-hdpi\list_blue_down.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_blue_down.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_blue_down.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_blue_middle.xml, src\main\res\drawable-hdpi\list_blue_middle.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_blue_middle.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_blue_middle.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_blue_single.xml, src\main\res\drawable-hdpi\list_blue_single.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_blue_single.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_blue_single.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_blue_up.xml, src\main\res\drawable-hdpi\list_blue_up.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_blue_up.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_blue_up.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_folder.xml, src\main\res\drawable-hdpi\list_folder.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_folder.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_folder.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_footer_bg.xml, src\main\res\drawable-hdpi\list_footer_bg.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_footer_bg.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_footer_bg.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_green_down.xml, src\main\res\drawable-hdpi\list_green_down.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_green_down.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_green_down.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_green_middle.xml, src\main\res\drawable-hdpi\list_green_middle.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_green_middle.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_green_middle.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_green_single.xml, src\main\res\drawable-hdpi\list_green_single.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_green_single.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_green_single.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_green_up.xml, src\main\res\drawable-hdpi\list_green_up.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_green_up.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_green_up.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_red_down.xml, src\main\res\drawable-hdpi\list_red_down.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_red_down.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_red_down.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_red_middle.xml, src\main\res\drawable-hdpi\list_red_middle.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_red_middle.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_red_middle.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_red_single.xml, src\main\res\drawable-hdpi\list_red_single.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_red_single.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_red_single.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_red_up.xml, src\main\res\drawable-hdpi\list_red_up.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_red_up.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_red_up.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_white_down.xml, src\main\res\drawable-hdpi\list_white_down.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_white_down.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_white_down.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_white_middle.xml, src\main\res\drawable-hdpi\list_white_middle.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_white_middle.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_white_middle.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_white_single.xml, src\main\res\drawable-hdpi\list_white_single.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_white_single.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_white_single.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_white_up.xml, src\main\res\drawable-hdpi\list_white_up.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_white_up.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_white_up.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_yellow_down.xml, src\main\res\drawable-hdpi\list_yellow_down.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_yellow_down.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_yellow_down.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_yellow_middle.xml, src\main\res\drawable-hdpi\list_yellow_middle.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_yellow_middle.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_yellow_middle.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_yellow_single.xml, src\main\res\drawable-hdpi\list_yellow_single.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_yellow_single.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_yellow_single.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\list_yellow_up.xml, src\main\res\drawable-hdpi\list_yellow_up.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/list_yellow_up.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/list_yellow_up.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\new_note_normal.xml, src\main\res\drawable-hdpi\new_note_normal.png">
+        <location
+            file="src/main/res/drawable-hdpi/new_note_normal.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/new_note_normal.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\new_note_pressed.xml, src\main\res\drawable-hdpi\new_note_pressed.png">
+        <location
+            file="src/main/res/drawable-hdpi/new_note_pressed.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/new_note_pressed.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\note_edit_color_selector_panel.xml, src\main\res\drawable-hdpi\note_edit_color_selector_panel.png">
+        <location
+            file="src/main/res/drawable-hdpi/note_edit_color_selector_panel.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/note_edit_color_selector_panel.xml"/>
+    </issue>
+
+    <issue
+        id="IconXmlAndPng"
+        message="The following images appear both as density independent `.xml` files and as bitmap files: src\main\res\drawable-anydpi\title_bar_bg.xml, src\main\res\drawable-hdpi\title_bar_bg.9.png">
+        <location
+            file="src/main/res/drawable-hdpi/title_bar_bg.9.png"/>
+        <location
+            file="src/main/res/drawable-anydpi/title_bar_bg.xml"/>
+    </issue>
+
+    <issue
+        id="IconMissingDensityFolder"
+        message="Missing density variation folders in `src\main\res`: drawable-mdpi, drawable-xhdpi, drawable-xxhdpi">
+        <location
+            file="src/main/res"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="This text field does not specify an `inputType`"
+        errorLine1="&lt;EditText"
+        errorLine2=" ~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_edit_text.xml"
+            line="18"
+            column="2"/>
+    </issue>
+
+    <issue
+        id="AlwaysShowAction"
+        message="Prefer &quot;`ifRoom`&quot; instead of &quot;`always`&quot;"
+        errorLine1="        android:showAsAction=&quot;always|withText&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/note_list_options.xml"
+            line="24"
+            column="9"/>
+        <location
+            file="src/main/res/menu/note_list_options.xml"
+            line="30"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="&lt;EditText"
+        errorLine2=" ~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_edit_text.xml"
+            line="18"
+            column="2"/>
+    </issue>
+
+    <issue
+        id="ButtonCase"
+        message="The standard Android way to capitalize cancel is &quot;Cancel&quot; (tip: use `@android:string/cancel` instead)"
+        errorLine1="    &lt;string name=&quot;datetime_dialog_cancel&quot;>cancel&lt;/string>"
+        errorLine2="                                          ~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="128"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `NoteEditText` overrides `onTouchEvent` but not `performClick`"
+        errorLine1="    public boolean onTouchEvent(MotionEvent event) {"
+        errorLine2="                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NoteEditText.java"
+            line="103"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view ``Button`` has `setOnTouchListener` called on it but does not override `performClick`"
+        errorLine1="        mAddNewNote.setOnTouchListener(new NewNoteOnTouchListener());"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="225"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`NewNoteOnTouchListener#onTouch` should call `View#performClick` when a click is detected"
+        errorLine1="        public boolean onTouch(View v, MotionEvent event) {"
+        errorLine2="                       ~~~~~~~">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListActivity.java"
+            line="349"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="55"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageButton"
+        errorLine2="             ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="71"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="170"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="193"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="216"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="239"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="262"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="294"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="307"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="332"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="345"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="370"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="383"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="408"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="421"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_item.xml"
+            line="81"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_2x.xml"
+            line="22"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/widget_4x.xml"
+            line="23"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="            mTitle.setText(context.getString(R.string.call_record_folder_name)"
+        errorLine2="                           ^">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListItem.java"
+            line="64"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                mTitle.setText(data.getSnippet()"
+        errorLine2="                               ^">
+        <location
+            file="src/main/java/net/micode/notes/ui/NotesListItem.java"
+            line="83"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;5dip&quot;` to better support right-to-left layouts"
+        errorLine1="        android:layout_marginLeft=&quot;5dip&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/datetime_picker.xml"
+            line="34"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;5dip&quot;` to better support right-to-left layouts"
+        errorLine1="        android:layout_marginLeft=&quot;5dip&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/datetime_picker.xml"
+            line="43"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;5dip&quot;` to better support right-to-left layouts"
+        errorLine1="        android:layout_marginLeft=&quot;5dip&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/datetime_picker.xml"
+            line="52"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;@dimen/card_padding_h&quot;` to better support right-to-left layouts"
+        errorLine1="            android:paddingLeft=&quot;@dimen/card_padding_h&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="41"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingRight` with `android:paddingEnd=&quot;@dimen/space_sm&quot;` to better support right-to-left layouts"
+        errorLine1="            android:paddingRight=&quot;@dimen/space_sm&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;left|center_vertical&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="51"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;8dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="52"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;2dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginLeft=&quot;2dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="67"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;8dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;8dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="68"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;left|top&quot;"
+        errorLine2="                                        ~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="101"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                        android:gravity=&quot;left|top&quot;"
+        errorLine2="                                         ~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="113"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;-10dip&quot;` to better support right-to-left layouts"
+        errorLine1="                        android:layout_marginLeft=&quot;-10dip&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="126"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:layout_gravity=&quot;top|right&quot; />"
+        errorLine2="                                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="139"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;@dimen/card_margin_h&quot;` to better support right-to-left layouts"
+        errorLine1="        android:layout_marginRight=&quot;@dimen/card_margin_h&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="151"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:layout_gravity=&quot;top|right&quot;"
+        errorLine2="                                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="152"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;bottom|right&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="311"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;6dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="312"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;bottom|right&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="349"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;6dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="352"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;bottom|right&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="387"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;6dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="390"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:layout_gravity=&quot;bottom|right&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="425"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;6dip&quot;` to better support right-to-left layouts"
+        errorLine1="                android:layout_marginRight=&quot;6dip&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit.xml"
+            line="428"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:layout_gravity=&quot;top|left&quot; />"
+        errorLine2="                                ~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_edit_list_item.xml"
+            line="29"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginLeft` with `android:layout_marginStart=&quot;@dimen/space_sm&quot;` to better support right-to-left layouts"
+        errorLine1="            android:layout_marginLeft=&quot;@dimen/space_sm&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_item.xml"
+            line="75"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:layout_gravity=&quot;top|right&quot; />"
+        errorLine2="                                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_item.xml"
+            line="85"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="            android:gravity=&quot;left|center_vertical&quot;"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/note_list_dropdown_menu.xml"
+            line="28"
+            column="30"/>
+    </issue>
+
+</issues>

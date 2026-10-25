@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -137,6 +138,9 @@ public class WorkingNote {
                 mWidgetType = cursor.getInt(NOTE_WIDGET_TYPE_COLUMN);
                 mAlertDate = cursor.getLong(NOTE_ALERTED_DATE_COLUMN);
                 mModifiedDate = cursor.getLong(NOTE_MODIFIED_DATE_COLUMN);
+            } else {
+                cursor.close();
+                throw new IllegalArgumentException("Note no longer exists");
             }
             cursor.close();
         } else {
@@ -187,33 +191,57 @@ public class WorkingNote {
         return new WorkingNote(context, id, 0);
     }
 
+    public Bundle snapshot() {
+        Bundle state = new Bundle();
+        state.putLong("id", mNoteId);
+        state.putLong("folder", mFolderId);
+        state.putString("content", mContent);
+        state.putInt("mode", mMode);
+        state.putLong("alert", mAlertDate);
+        state.putLong("modified", mModifiedDate);
+        state.putInt("background", mBgColorId);
+        state.putInt("widget", mWidgetId);
+        state.putInt("widgetType", mWidgetType);
+        state.putBundle("diff", mNote.snapshot());
+        return state;
+    }
+
+    public static WorkingNote restore(Context context, Bundle state) {
+        WorkingNote note = new WorkingNote(context, state.getLong("folder"));
+        note.mNoteId = state.getLong("id");
+        note.mContent = state.getString("content", "");
+        note.mMode = state.getInt("mode");
+        note.mAlertDate = state.getLong("alert");
+        note.mModifiedDate = state.getLong("modified");
+        note.mBgColorId = state.getInt("background");
+        note.mWidgetId = state.getInt("widget");
+        note.mWidgetType = state.getInt("widgetType");
+        note.mNote.restore(state.getBundle("diff"));
+        return note;
+    }
+
     public synchronized boolean saveNote() {
-        if (isWorthSaving()) {
-            if (!existInDatabase()) {
-                if ((mNoteId = Note.getNewNoteId(mContext, mFolderId)) == 0) {
-                    Log.e(TAG, "Create new note fail with id:" + mNoteId);
-                    return false;
-                }
-            }
-
-            mNote.syncNote(mContext, mNoteId);
-
-            /**
-             * Update widget content if there exist any widget of this note
-             */
-            if (mWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID
-                    && mWidgetType != Notes.TYPE_WIDGET_INVALIDE
-                    && mNoteSettingStatusListener != null) {
+        if (mIsDeleted || !isWorthSaving()) return true;
+        long savedId = mNote.save(mContext, mNoteId, mFolderId);
+        if (savedId <= 0) return false;
+        mNoteId = savedId;
+        if (mWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID
+                && mWidgetType != Notes.TYPE_WIDGET_INVALIDE && mNoteSettingStatusListener != null) {
+            try {
                 mNoteSettingStatusListener.onWidgetChanged();
+            } catch (RuntimeException e) {
+                Log.w(TAG, "Widget refresh failed after note commit");
             }
-            return true;
-        } else {
-            return false;
         }
+        return true;
     }
 
     public boolean existInDatabase() {
         return mNoteId > 0;
+    }
+
+    public boolean needsSave() {
+        return isWorthSaving();
     }
 
     private boolean isWorthSaving() {

@@ -37,6 +37,9 @@ public class Contact {
             + " WHERE min_match = '+')";
 
     public static String getContact(Context context, String phoneNumber) {
+        if (phoneNumber == null || (android.os.Build.VERSION.SDK_INT >= 23
+                && context.checkSelfPermission(android.Manifest.permission.READ_CONTACTS)
+                != android.content.pm.PackageManager.PERMISSION_GRANTED)) return null;
         if(sContactCache == null) {
             sContactCache = new HashMap<String, String>();
         }
@@ -47,12 +50,12 @@ public class Contact {
 
         String selection = CALLER_ID_SELECTION.replace("+",
                 PhoneNumberUtils.toCallerIDMinMatch(phoneNumber));
-        Cursor cursor = context.getContentResolver().query(
+        try (Cursor cursor = context.getContentResolver().query(
                 Data.CONTENT_URI,
                 new String [] { Phone.DISPLAY_NAME },
                 selection,
                 new String[] { phoneNumber },
-                null);
+                null)) {
 
         if (cursor != null && cursor.moveToFirst()) {
             try {
@@ -62,11 +65,11 @@ public class Contact {
             } catch (IndexOutOfBoundsException e) {
                 Log.e(TAG, " Cursor get string error " + e.toString());
                 return null;
-            } finally {
-                cursor.close();
             }
         } else {
-            Log.d(TAG, "No contact matched with number:" + phoneNumber);
+            return null;
+        }
+        } catch (SecurityException e) {
             return null;
         }
     }

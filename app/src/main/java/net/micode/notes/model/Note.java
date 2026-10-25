@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.RemoteException;
+import android.os.Bundle;
 import android.util.Log;
 
 import net.micode.notes.data.Notes;
@@ -100,34 +101,71 @@ public class Note {
         return mNoteDiffValues.size() > 0 || mNoteData.isLocalModified();
     }
 
+    public Bundle snapshot() {
+        Bundle state = new Bundle();
+        state.putParcelable("note", new ContentValues(mNoteDiffValues));
+        state.putParcelable("text", new ContentValues(mNoteData.mTextDataValues));
+        state.putParcelable("call", new ContentValues(mNoteData.mCallDataValues));
+        state.putLong("textId", mNoteData.mTextDataId);
+        state.putLong("callId", mNoteData.mCallDataId);
+        return state;
+    }
+
+    public void restore(Bundle state) {
+        mNoteDiffValues = state.getParcelable("note");
+        mNoteData.mTextDataValues = state.getParcelable("text");
+        mNoteData.mCallDataValues = state.getParcelable("call");
+        mNoteData.mTextDataId = state.getLong("textId");
+        mNoteData.mCallDataId = state.getLong("callId");
+    }
+
     public boolean syncNote(Context context, long noteId) {
-        if (noteId <= 0) {
-            throw new IllegalArgumentException("Wrong note id:" + noteId);
-        }
+        if (noteId <= 0) throw new IllegalArgumentException("Invalid note id");
+        return save(context, noteId, 0) > 0;
+    }
 
-        if (!isLocalModified()) {
-            return true;
+    /** Commit the note and both data rows together. Keep all differences until commit. */
+    public synchronized long save(Context context, long noteId, long folderId) {
+        if (noteId > 0 && !isLocalModified()) return noteId;
+        ArrayList<ContentProviderOperation> operations = new ArrayList<>();
+        ContentValues values = new ContentValues(mNoteDiffValues);
+        boolean creating = noteId == 0;
+        if (creating) {
+            values.put(NoteColumns.PARENT_ID, folderId);
+            values.put(NoteColumns.TYPE, Notes.TYPE_NOTE);
+            values.put(NoteColumns.CREATED_DATE, System.currentTimeMillis());
+            operations.add(ContentProviderOperation.newInsert(Notes.CONTENT_NOTE_URI)
+                    .withValues(values).build());
+        } else {
+            operations.add(ContentProviderOperation.newUpdate(
+                    ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId))
+                    .withValues(values).withExpectedCount(1).build());
         }
-
-        /**
-         * In theory, once data changed, the note should be updated on {@link NoteColumns#LOCAL_MODIFIED} and
-         * {@link NoteColumns#MODIFIED_DATE}. For data safety, though update note fails, we also update the
-         * note data info
-         */
-        if (context.getContentResolver().update(
-                ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId), mNoteDiffValues, null,
-                null) == 0) {
-            Log.e(TAG, "Update note error, should not happen");
-            // Do not return, fall through
+        int textIndex = mNoteData.appendOperation(operations, mNoteData.mTextDataValues,
+                mNoteData.mTextDataId, TextNote.CONTENT_ITEM_TYPE, noteId);
+        int callIndex = mNoteData.appendOperation(operations, mNoteData.mCallDataValues,
+                mNoteData.mCallDataId, CallNote.CONTENT_ITEM_TYPE, noteId);
+        try {
+            ContentProviderResult[] results = context.getContentResolver()
+                    .applyBatch(Notes.AUTHORITY, operations);
+            if (results == null || results.length != operations.size()) return 0;
+            long savedId = creating ? ContentUris.parseId(results[0].uri) : noteId;
+            long textId = textIndex >= 0 && mNoteData.mTextDataId == 0
+                    ? ContentUris.parseId(results[textIndex].uri) : mNoteData.mTextDataId;
+            long callId = callIndex >= 0 && mNoteData.mCallDataId == 0
+                    ? ContentUris.parseId(results[callIndex].uri) : mNoteData.mCallDataId;
+            if (savedId <= 0 || (textIndex >= 0 && textId <= 0)
+                    || (callIndex >= 0 && callId <= 0)) return 0;
+            mNoteData.mTextDataId = textId;
+            mNoteData.mCallDataId = callId;
+            mNoteDiffValues.clear();
+            mNoteData.mTextDataValues.clear();
+            mNoteData.mCallDataValues.clear();
+            return savedId;
+        } catch (RemoteException | OperationApplicationException | RuntimeException e) {
+            Log.e(TAG, "Atomic note save failed (" + e.getClass().getSimpleName() + ")");
+            return 0;
         }
-        mNoteDiffValues.clear();
-
-        if (mNoteData.isLocalModified()
-                && (mNoteData.pushIntoContentResolver(context, noteId) == null)) {
-            return false;
-        }
-
-        return true;
     }
 
     private class NoteData {
@@ -178,76 +216,28 @@ public class Note {
             mNoteDiffValues.put(NoteColumns.MODIFIED_DATE, System.currentTimeMillis());
         }
 
-        Uri pushIntoContentResolver(Context context, long noteId) {
-            /**
-             * Check for safety
-             */
-            if (noteId <= 0) {
-                throw new IllegalArgumentException("Wrong note id:" + noteId);
+        int appendOperation(ArrayList<ContentProviderOperation> operations,
+                ContentValues differences, long dataId, String mimeType, long noteId) {
+            if (differences.size() == 0) return -1;
+            ContentValues values = new ContentValues(differences);
+            ContentProviderOperation.Builder builder;
+            if (dataId == 0) {
+                builder = ContentProviderOperation.newInsert(Notes.CONTENT_DATA_URI);
+                values.put(DataColumns.MIME_TYPE, mimeType);
+            } else {
+                builder = ContentProviderOperation.newUpdate(
+                        ContentUris.withAppendedId(Notes.CONTENT_DATA_URI, dataId))
+                        .withExpectedCount(1);
             }
-
-            ArrayList<ContentProviderOperation> operationList = new ArrayList<ContentProviderOperation>();
-            ContentProviderOperation.Builder builder = null;
-
-            if(mTextDataValues.size() > 0) {
-                mTextDataValues.put(DataColumns.NOTE_ID, noteId);
-                if (mTextDataId == 0) {
-                    mTextDataValues.put(DataColumns.MIME_TYPE, TextNote.CONTENT_ITEM_TYPE);
-                    Uri uri = context.getContentResolver().insert(Notes.CONTENT_DATA_URI,
-                            mTextDataValues);
-                    try {
-                        setTextDataId(Long.valueOf(uri.getPathSegments().get(1)));
-                    } catch (NumberFormatException e) {
-                        Log.e(TAG, "Insert new text data fail with noteId" + noteId);
-                        mTextDataValues.clear();
-                        return null;
-                    }
-                } else {
-                    builder = ContentProviderOperation.newUpdate(ContentUris.withAppendedId(
-                            Notes.CONTENT_DATA_URI, mTextDataId));
-                    builder.withValues(mTextDataValues);
-                    operationList.add(builder.build());
-                }
-                mTextDataValues.clear();
+            if (noteId == 0) {
+                builder.withValueBackReference(DataColumns.NOTE_ID, 0);
+            } else {
+                values.put(DataColumns.NOTE_ID, noteId);
             }
-
-            if(mCallDataValues.size() > 0) {
-                mCallDataValues.put(DataColumns.NOTE_ID, noteId);
-                if (mCallDataId == 0) {
-                    mCallDataValues.put(DataColumns.MIME_TYPE, CallNote.CONTENT_ITEM_TYPE);
-                    Uri uri = context.getContentResolver().insert(Notes.CONTENT_DATA_URI,
-                            mCallDataValues);
-                    try {
-                        setCallDataId(Long.valueOf(uri.getPathSegments().get(1)));
-                    } catch (NumberFormatException e) {
-                        Log.e(TAG, "Insert new call data fail with noteId" + noteId);
-                        mCallDataValues.clear();
-                        return null;
-                    }
-                } else {
-                    builder = ContentProviderOperation.newUpdate(ContentUris.withAppendedId(
-                            Notes.CONTENT_DATA_URI, mCallDataId));
-                    builder.withValues(mCallDataValues);
-                    operationList.add(builder.build());
-                }
-                mCallDataValues.clear();
-            }
-
-            if (operationList.size() > 0) {
-                try {
-                    ContentProviderResult[] results = context.getContentResolver().applyBatch(
-                            Notes.AUTHORITY, operationList);
-                    return (results == null || results.length == 0 || results[0] == null) ? null
-                            : ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, noteId);
-                } catch (RemoteException e) {
-                    Log.e(TAG, String.format("%s: %s", e.toString(), e.getMessage()));
-                    return null;
-                } catch (OperationApplicationException e) {
-                    Log.e(TAG, String.format("%s: %s", e.toString(), e.getMessage()));
-                    return null;
-                }
-            }
-            return null;
+            int index = operations.size();
+            operations.add(builder.withValues(values).build());
+            return index;
         }
+
     }
 }

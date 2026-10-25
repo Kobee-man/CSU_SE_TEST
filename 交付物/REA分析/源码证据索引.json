@@ -1,0 +1,402 @@
+﻿[
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\AndroidManifest.xml",
+        "sha256":  "61B2539F57D536A4D4CFE7C559766D4E3D968800418E6E7B764DB17EBBABFEB1",
+        "bytes":  6427
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\data\\Contact.java",
+        "sha256":  "D51A1BA258701A6034D10DB417F0F9FA480D42AC206B7CBFF3C174DD3D556E16",
+        "bytes":  2710
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\data\\Notes.java",
+        "sha256":  "0479AA9F79E0C9667A12C8FBCAB19ABB4F1475E96D0AB24C515FFE5D48CE7AE5",
+        "bytes":  9200
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesDatabaseHelper.java",
+        "sha256":  "7A7002CBF72579780C7E017FBE33C651F8A917E4135572A9621DB5350322A117",
+        "bytes":  15028
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesProvider.java",
+        "sha256":  "0CF9CDD2BC878211364F811BB794CCE178E050A83170852C86BBA659FBE1EB62",
+        "bytes":  12596
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\MetaData.java",
+        "sha256":  "4062664AFD76C8A03038D70FCE0BDDEB4EFF94B42BCC0727A11FC3ED8285C3B1",
+        "bytes":  2600
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Node.java",
+        "sha256":  "25AE2ADFFE0168FDA19FF544513C67245AC691CDECCFF2085822F025B76EFA05",
+        "bytes":  2597
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlData.java",
+        "sha256":  "CD1F2FAFDE0D2784396A35B8CDE22F1CD0F47739D5F9709629EE0FE9C77D4B54",
+        "bytes":  7085
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlNote.java",
+        "sha256":  "B46A1678C53178E0EBCE6E1479FE09BBDDFBB7939E85E54409AE82E315F17959",
+        "bytes":  18919
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Task.java",
+        "sha256":  "7F9E835B369C8FBA08879C33A24AB6E87D6C4093B998A100883D2D015B0A955A",
+        "bytes":  12322
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\TaskList.java",
+        "sha256":  "CB34597866AB0D62654EA34913C48C23250A628FC7C38BF417E775E48C7F3C4B",
+        "bytes":  11665
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\ActionFailureException.java",
+        "sha256":  "695377CA2B1F441510E6B0E2EFB93FF93EA148D731B2FDAC23555CC0A2F9BFFC",
+        "bytes":  1145
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\NetworkFailureException.java",
+        "sha256":  "5ECED3BA8F411E8D499025374CA547AC661ED7ED180575543FFAE5BD6F84FA39",
+        "bytes":  1142
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskASyncTask.java",
+        "sha256":  "5908E0543627375287D87C6C56A68510804B65DF7C06FDEFBBFB8E76687F7E98",
+        "bytes":  4845
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskClient.java",
+        "sha256":  "36276A987A2891DFADEA6857A9BED49CEE0B8C9514FEF5778FE817A6C27B546B",
+        "bytes":  20487
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskManager.java",
+        "sha256":  "767B68B0C6D8C6443F48D18E0C10B5FA6B613604770873FA8CD3D8AA7D993947",
+        "bytes":  30819
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskSyncService.java",
+        "sha256":  "922779B8DB4FD6FC7F0C16F82EDDC8AA7EEB3F3F546FAE5930A5122AE787F2A7",
+        "bytes":  4209
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\model\\Note.java",
+        "sha256":  "CA24DE8715EFBF56368079C65D5E274506A9D9339B2372D52F24C266EE042C1F",
+        "bytes":  9686
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\model\\WorkingNote.java",
+        "sha256":  "BBC7BA925E0F0F2FFD5E10E48019AD077C77208689C49AE820D97775D44F74AB",
+        "bytes":  11791
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\tool\\BackupUtils.java",
+        "sha256":  "AAD27173699BD8E234767F687AC7577AAEBF55871E5C2A7E04DB1C3D1DEC3050",
+        "bytes":  13765
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\tool\\DataUtils.java",
+        "sha256":  "6B4ED99D7FBF9C9CAA50BA7B4BBA0F1690777C1F6CF210EAB4AB89EB9325331F",
+        "bytes":  11518
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\tool\\GTaskStringUtils.java",
+        "sha256":  "9A67203D50AD2F1E9A3701808EC3ED169C6E34AD2DAE837273805A24746D7C0D",
+        "bytes":  3983
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\tool\\ResourceParser.java",
+        "sha256":  "D2D43A443DA86312BB0A75FC55E8B7D9BEB746DD009B26FA36CB4876E443291D",
+        "bytes":  6255
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmAlertActivity.java",
+        "sha256":  "00F7FCC6AD9D46B7930F356E56A6548739C663055CABF9B86E9773E282002B52",
+        "bytes":  5645
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmInitReceiver.java",
+        "sha256":  "F8DF6FDC2C4E08D6627426CC03DB6552560F6D43839CADCE7E29B96484AFF538",
+        "bytes":  2617
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmReceiver.java",
+        "sha256":  "EAD0DA3D7659B6630A82989DDDB0CBF24A8046DE3162656BBB2FCA4824275844",
+        "bytes":  1105
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePicker.java",
+        "sha256":  "D2A820AF13265632FFAC20AE150905AC34EF76BA02049C7F01CCB18333EA666F",
+        "bytes":  16716
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePickerDialog.java",
+        "sha256":  "432EB0E2EC241F36BA7998533FBDB39A7EBF35858F490C91DD3585781D77B584",
+        "bytes":  3527
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DropdownMenu.java",
+        "sha256":  "5D03FA193CDEBE9B328C1C52B1F812878BA5D38501170BCBA58F2C70E8C3A28E",
+        "bytes":  2008
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\FoldersListAdapter.java",
+        "sha256":  "06BCCDC608CB190A1D25FB1F0E0640A100952F4BAC23476EE795897B5A8B164B",
+        "bytes":  2721
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditActivity.java",
+        "sha256":  "32F4E9786FC764F8049A601C87F7F61595744994B290AEF841F02F264A1CC995",
+        "bytes":  35995
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditText.java",
+        "sha256":  "DC5097A21BFE5BD18576FC623289ADD60C0C9D55567F6C1A4FEAD51998053680",
+        "bytes":  7742
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteItemData.java",
+        "sha256":  "22C2615E2720B422FB5DB4E9840B026C08DF7EC227AE072277CF451B963078FB",
+        "bytes":  7045
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListActivity.java",
+        "sha256":  "46A1CD5DEFE96A263986C64042EF16960DF01CF52FAD14C12B3F485A388392E9",
+        "bytes":  39624
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListAdapter.java",
+        "sha256":  "5A3E047341AC0A1E33E4657CC4AB30A4BCF428960F994BA7A4C1B68E1DF3239A",
+        "bytes":  5833
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListItem.java",
+        "sha256":  "4A50E1F4990A696322CACB0459AC74C93B46744741EE249BEBBE18336FE71BDD",
+        "bytes":  5066
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesPreferenceActivity.java",
+        "sha256":  "303D3EBD0B7D0657EB0E19F85D08CA8E8EB66F5EEBEF7BD70C03C5D3317C413A",
+        "bytes":  16036
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider.java",
+        "sha256":  "84C00928E0AC8DC53BF37DB27546A4AD20913D0F7052A5302194828DAE497C42",
+        "bytes":  5924
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_2x.java",
+        "sha256":  "A893FDFA0015CAE274E6955DADA37827AE04CEEF94D481392C8806760B937DF7",
+        "bytes":  1490
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\源码\\MiCode-Notes\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_4x.java",
+        "sha256":  "8A3021024A7D0CEEE0440B91C6BDA80C62926D966ADD7F834BE638102EED08AC",
+        "bytes":  1475
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\AndroidManifest.xml",
+        "sha256":  "2B046AC2187416E32BEA3073DF278F7A971EC3ECA44A925BE962FD3AA959DFCA",
+        "bytes":  6402
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\data\\Contact.java",
+        "sha256":  "1A6B1EB33C25610B8C6CAB16851A7B3D1D59508DF1ACD9B47BC5817D22E84CB3",
+        "bytes":  3261
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\data\\Notes.java",
+        "sha256":  "3D587872CDC97037C026095C83BE39B1BBCB85C541EEBBE9E42A6D8274148C2F",
+        "bytes":  8921
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesDatabaseHelper.java",
+        "sha256":  "FA280C274FCA806A4558E8579179156414B49B9C370E9CF2781E9C78049EB7F2",
+        "bytes":  16428
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\data\\NotesProvider.java",
+        "sha256":  "4362FC4545AE7D20ECD38E39530E8BAF079D65E46574824DF5D91D39868909A5",
+        "bytes":  13846
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\MetaData.java",
+        "sha256":  "B7BAB45F4F0DEBCC2B53C734D0AAAFCA650CD8EE07E272EBFEF7E7A8C2BFF454",
+        "bytes":  2518
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Node.java",
+        "sha256":  "9A892E9D3EDD381B85403A2D1643B1D462AC4CB245C73C37F8D16B0150318AA7",
+        "bytes":  2496
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlData.java",
+        "sha256":  "71510C93CB99FB5C41C80A2B391DB1158B564785AA136954AA90D9BA73D26184",
+        "bytes":  6896
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\SqlNote.java",
+        "sha256":  "E0526B77590F36A4EAFD4E5266D1F21DAFAFD32D6A7DEC0099C4638A72FDD35B",
+        "bytes":  18414
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\Task.java",
+        "sha256":  "CB8DB348AEA21D1F6883382F9F3B723846D00334318D939D18473AD203FD0297",
+        "bytes":  11971
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\data\\TaskList.java",
+        "sha256":  "240A60904B2AF889170B0191BA6D0953F5E03F4398A3F1DCCEF408961261F581",
+        "bytes":  11322
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\ActionFailureException.java",
+        "sha256":  "20D2B8A1E018B5A1CA0CDA687D223FC98039E1ED71FF5D454EBF19AC1E992C09",
+        "bytes":  1112
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\exception\\NetworkFailureException.java",
+        "sha256":  "4002FF73921BA03F0B68E7BBF7943269DA82F51CD6896BC5FD34AEFABA78C59B",
+        "bytes":  1109
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskASyncTask.java",
+        "sha256":  "6B45ED72ECD58D68EBBC66339BA20D727213DF6D4AE07C57C2542E588A7A6B6F",
+        "bytes":  4620
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskClient.java",
+        "sha256":  "D4F883ADA0061315FCCE771616BFB09B32210DE5AF38B44E075D4FDD43A43B9B",
+        "bytes":  21625
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskManager.java",
+        "sha256":  "0E7FFB97B63935A8A12A2B36D9F5A5E66643FA7C12D0764B65589410CA784CBE",
+        "bytes":  30019
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\gtask\\remote\\GTaskSyncService.java",
+        "sha256":  "238DB638348EE2F397344C29245BF59B8584339382FBFCE2BCBFC99AD3E5C99F",
+        "bytes":  4081
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\model\\Note.java",
+        "sha256":  "9CE681DC68EB1EFCE48EBC9EB6013DF9F0FBE8D990AAA0F251058F12DD676646",
+        "bytes":  9433
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\model\\WorkingNote.java",
+        "sha256":  "9FD5CDE0C6F66F0CBB61B137293EE4930A5B17E5353C6D0E502B659026CE69F4",
+        "bytes":  11423
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\tool\\BackupUtils.java",
+        "sha256":  "0B649EA01BE62A8E91CF00CCB16B72FDED22F30743991B681D97D0D96492EB86",
+        "bytes":  13421
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\tool\\DataUtils.java",
+        "sha256":  "914AE10EA65A5D8DD2D8FC81B0294EBDD9FC4A11AC10E68D7C7C1611779F3E2E",
+        "bytes":  11223
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\tool\\GTaskStringUtils.java",
+        "sha256":  "DCA664F35E9DA0A6281EA5889066A699192C1A840CEDB3F280E58B6A07FE7D33",
+        "bytes":  3870
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\tool\\ResourceParser.java",
+        "sha256":  "01A0464EE002B71614194F378FDA8F14BAC789F2212B47E9BC2B39F60881E518",
+        "bytes":  6074
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmAlertActivity.java",
+        "sha256":  "5152295B985F8D5F39EA098371290E3BEEBAF1020006E19C4DC9DD9A7E693BB7",
+        "bytes":  7040
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmInitReceiver.java",
+        "sha256":  "DB321684AD4E43D02B0F6D8DBDD84132AA02182A184FA6E10BB7B199674A7AE4",
+        "bytes":  3379
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\AlarmReceiver.java",
+        "sha256":  "7965508ACEC091E07118B236B0874C8055A650DA3CD790B4DA916A2615C9C412",
+        "bytes":  1309
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePicker.java",
+        "sha256":  "659343848007691F940AD6369575D1E12AF3546F4ADE5A8BEF6E23864AC04853",
+        "bytes":  21150
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DateTimePickerDialog.java",
+        "sha256":  "AA35F4E2DE29C24097C6A1A9DA6166A45BB9A7F51448925775B5671963E89770",
+        "bytes":  4469
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\DropdownMenu.java",
+        "sha256":  "AB8AE589A6CA73F31B7238F21B3BB386E9F9506FC6E929636C51AE9C57FBDBE7",
+        "bytes":  2836
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\FoldersListAdapter.java",
+        "sha256":  "0C4D2D3A863CAA35D9E4499F277BADC4908774E6A918E1A779BF9453932F971C",
+        "bytes":  3935
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditActivity.java",
+        "sha256":  "E9E3A3B26905B099C6C87630F03D9B94F783BC297D9F82D0BE500058729F151E",
+        "bytes":  43162
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteEditText.java",
+        "sha256":  "99AA76A507E6782AF239B6090DB5112C0B29604470C156DFD552F75D34E92B9B",
+        "bytes":  10462
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NoteItemData.java",
+        "sha256":  "882F339F498177AA8D4738399B4821632FAA3BA5EBB5DC3A0DD2AE1A20D72C63",
+        "bytes":  9855
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListActivity.java",
+        "sha256":  "6AC54421BD90220D34372530171278974A138D9171A34B700EA8EF25418BA341",
+        "bytes":  57850
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListAdapter.java",
+        "sha256":  "FD324A2653B82B5AA888CA16C6E6F1E077C0DF8FB110357E9DED849162623EC5",
+        "bytes":  6087
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesListItem.java",
+        "sha256":  "5D39322457EF8D39735EF246F162E2517CE212C8B248E657F0FEFD029077D677",
+        "bytes":  7060
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\ui\\NotesPreferenceActivity.java",
+        "sha256":  "4D27007E1CEFDFD1479675C07BDF6FA899768CF61927FBA17CC480990E964E83",
+        "bytes":  18947
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider.java",
+        "sha256":  "BB6F785152EBABBDD9D4C881CE9300160605EFACA6A7022EBD332C83FF490F09",
+        "bytes":  5701
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_2x.java",
+        "sha256":  "AC01962A00B07156CE8EE805F108DE86F52AA97183423C1F1ED210B02A49D7C0",
+        "bytes":  1443
+    },
+    {
+        "path":  "D:\\SE\\软件工程项目实验\\补充文件\\Notesmaster-master\\Notesmaster-master\\app\\src\\main\\java\\net\\micode\\notes\\widget\\NoteWidgetProvider_4x.java",
+        "sha256":  "256A451A12C63924D1959B697F49680E547EEB2EE73DF9F51BB5CAAC588C75DF",
+        "bytes":  1429
+    }
+]

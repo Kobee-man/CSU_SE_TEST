@@ -1,0 +1,965 @@
+﻿{
+  "main_count": 39,
+  "supp_count": 39,
+  "same_tokens": [
+    "net\\micode\\notes\\data\\Notes.java",
+    "net\\micode\\notes\\data\\NotesDatabaseHelper.java",
+    "net\\micode\\notes\\data\\NotesProvider.java",
+    "net\\micode\\notes\\gtask\\data\\MetaData.java",
+    "net\\micode\\notes\\gtask\\data\\Node.java",
+    "net\\micode\\notes\\gtask\\data\\SqlData.java",
+    "net\\micode\\notes\\gtask\\data\\SqlNote.java",
+    "net\\micode\\notes\\gtask\\data\\Task.java",
+    "net\\micode\\notes\\gtask\\data\\TaskList.java",
+    "net\\micode\\notes\\gtask\\exception\\ActionFailureException.java",
+    "net\\micode\\notes\\gtask\\exception\\NetworkFailureException.java",
+    "net\\micode\\notes\\gtask\\remote\\GTaskManager.java",
+    "net\\micode\\notes\\gtask\\remote\\GTaskSyncService.java",
+    "net\\micode\\notes\\model\\Note.java",
+    "net\\micode\\notes\\model\\WorkingNote.java",
+    "net\\micode\\notes\\tool\\BackupUtils.java",
+    "net\\micode\\notes\\tool\\DataUtils.java",
+    "net\\micode\\notes\\tool\\GTaskStringUtils.java",
+    "net\\micode\\notes\\tool\\ResourceParser.java",
+    "net\\micode\\notes\\ui\\AlarmReceiver.java",
+    "net\\micode\\notes\\ui\\DateTimePicker.java",
+    "net\\micode\\notes\\ui\\DropdownMenu.java",
+    "net\\micode\\notes\\ui\\FoldersListAdapter.java",
+    "net\\micode\\notes\\ui\\NotesListItem.java",
+    "net\\micode\\notes\\widget\\NoteWidgetProvider_2x.java",
+    "net\\micode\\notes\\widget\\NoteWidgetProvider_4x.java"
+  ],
+  "changed_tokens": [
+    {
+      "file": "net\\micode\\notes\\data\\Contact.java",
+      "changes": [
+        {
+          "main": "\" Cursor get string error \"",
+          "supp": "\"Cursor get string error \""
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\gtask\\remote\\GTaskASyncTask.java",
+      "changes": [
+        {
+          "main": "notification",
+          "supp": ". Builder builder"
+        },
+        {
+          "main": "setSmallIcon",
+          "supp": "setAutoCancel"
+        },
+        {
+          "main": "R . drawable . notification ) . setTicker ( mContext . getString ( tickerId ) ) . setWhen ( System . currentTimeMillis ( )",
+          "supp": "true"
+        },
+        {
+          "main": "setDefaults",
+          "supp": "setWhen"
+        },
+        {
+          "main": "Notification",
+          "supp": "System"
+        },
+        {
+          "main": "DEFAULT_LIGHTS",
+          "supp": "currentTimeMillis ( )"
+        },
+        {
+          "main": "setAutoCancel",
+          "supp": "setOngoing"
+        },
+        {
+          "main": "",
+          "supp": "; Notification notification = builder"
+        },
+        {
+          "main": "build",
+          "supp": "getNotification"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\gtask\\remote\\GTaskClient.java",
+      "changes": [
+        {
+          "main": "",
+          "supp": "apache . http . HttpEntity ; import org . apache . http . HttpResponse ; import org . apache . http . client . ClientProtocolException ; import org . apache . http . client . entity . UrlEncodedFormEntity ; import org . apache . http . client . methods . HttpGet ; import org . apache . http . client . methods . HttpPost ; import org . apache . http . cookie . Cookie ; import org . apache . http . impl . client . BasicCookieStore ; import org . apache . http . impl . client . DefaultHttpClient ; import org . apache . http . message . BasicNameValuePair ; import org . apache . http . params . BasicHttpParams ; import org . apache . http . params . HttpConnectionParams ; import org . apache . http . params . HttpParams ; import org . apache . http . params . HttpProtocolParams ; import org ."
+        },
+        {
+          "main": "io",
+          "supp": "util"
+        },
+        {
+          "main": "OutputStream ; import java . net . CookieHandler ; import java . net . CookieManager ; import java . net . CookiePolicy ; import java . net . HttpCookie ; import java . net . HttpURLConnection ; import java . net . URL ; import java . net . URLEncoder",
+          "supp": "LinkedList"
+        },
+        {
+          "main": "final int TIMEOUT_CONNECTION = 10000 ; private static final int TIMEOUT_SOCKET = 15000 ; private static",
+          "supp": ""
+        },
+        {
+          "main": "CookieManager mCookieManager",
+          "supp": "DefaultHttpClient mHttpClient"
+        },
+        {
+          "main": "mCookieManager",
+          "supp": "mHttpClient"
+        },
+        {
+          "main": "new CookieManager (",
+          "supp": ""
+        },
+        {
+          "main": ", CookiePolicy . ACCEPT_ALL ) ; CookieHandler . setDefault ( mCookieManager )",
+          "supp": ""
+        },
+        {
+          "main": "",
+          "supp": "int timeoutConnection = 10000 ; int timeoutSocket = 15000 ; HttpParams httpParameters = new BasicHttpParams ( ) ; HttpConnectionParams . setConnectionTimeout ( httpParameters , timeoutConnection ) ; HttpConnectionParams . setSoTimeout ( httpParameters , timeoutSocket ) ; mHttpClient = new DefaultHttpClient ( httpParameters ) ; BasicCookieStore localBasicCookieStore = new BasicCookieStore ( ) ; mHttpClient . setCookieStore ( localBasicCookieStore ) ; HttpProtocolParams . setUseExpectContinue ( mHttpClient . getParams ( ) , false ) ;"
+        },
+        {
+          "main": "HttpURLConnection connection",
+          "supp": "HttpGet httpGet"
+        },
+        {
+          "main": "openConnection",
+          "supp": "new HttpGet"
+        },
+        {
+          "main": "connection",
+          "supp": "HttpResponse response = null ; response = mHttpClient"
+        },
+        {
+          "main": "setRequestMethod",
+          "supp": "execute"
+        },
+        {
+          "main": "\"GET\"",
+          "supp": "httpGet"
+        },
+        {
+          "main": "HttpCookie",
+          "supp": "Cookie"
+        },
+        {
+          "main": "mCookieManager",
+          "supp": "mHttpClient"
+        },
+        {
+          "main": "HttpCookie",
+          "supp": "Cookie"
+        },
+        {
+          "main": "readResponseContent",
+          "supp": "getResponseContent"
+        },
+        {
+          "main": "connection",
+          "supp": "response . getEntity ( ) ) ; String jsBegin = \"_setup(\" ; String jsEnd = \")}</script>\" ; int begin = resString . indexOf ( jsBegin ) ; int end = resString . lastIndexOf ( jsEnd"
+        },
+        {
+          "main": "parseSetupContent",
+          "supp": "null ; if"
+        },
+        {
+          "main": "",
+          "supp": "begin ! = - 1 & & end ! = - 1 & & begin < end ) { jsString ="
+        },
+        {
+          "main": "",
+          "supp": ". substring ( begin + jsBegin . length ( ) , end"
+        },
+        {
+          "main": "",
+          "supp": "}"
+        },
+        {
+          "main": "String parseSetupContent",
+          "supp": "HttpPost createHttpPost"
+        },
+        {
+          "main": "String resString",
+          "supp": ""
+        },
+        {
+          "main": "String jsBegin",
+          "supp": "HttpPost httpPost"
+        },
+        {
+          "main": "\"_setup(\" ; String jsEnd = \")}</script>\" ; int begin = resString . indexOf",
+          "supp": "new HttpPost"
+        },
+        {
+          "main": "jsBegin",
+          "supp": "mPostUrl"
+        },
+        {
+          "main": "int end = resString",
+          "supp": "httpPost"
+        },
+        {
+          "main": "lastIndexOf",
+          "supp": "setHeader"
+        },
+        {
+          "main": "jsEnd",
+          "supp": "\"Content-Type\" , \"application/x-www-form-urlencoded;charset=utf-8\""
+        },
+        {
+          "main": "String jsString = null ; if",
+          "supp": "httpPost . setHeader"
+        },
+        {
+          "main": "begin ! = - 1 & & end ! = - 1 & & begin < end ) { jsString = resString . substring ( begin + jsBegin . length ( )",
+          "supp": "\"AT\""
+        },
+        {
+          "main": "end ) ; } return jsString ; } private HttpURLConnection openConnection ( String url ) throws IOException { HttpURLConnection connection = ( HttpURLConnection ) new URL ( url ) . openConnection ( ) ; connection . setConnectTimeout ( TIMEOUT_CONNECTION ) ; connection . setReadTimeout ( TIMEOUT_SOCKET ) ; connection . setUseCaches ( false ) ; connection . setInstanceFollowRedirects ( true",
+          "supp": "\"1\""
+        },
+        {
+          "main": "connection",
+          "supp": "httpPost"
+        },
+        {
+          "main": "readResponseContent",
+          "supp": "getResponseContent"
+        },
+        {
+          "main": "HttpURLConnection connection",
+          "supp": "HttpEntity entity"
+        },
+        {
+          "main": "connection",
+          "supp": "null ; if ( entity"
+        },
+        {
+          "main": "",
+          "supp": "! = null ) { contentEncoding = entity . getContentEncoding ( ) . getValue ( )"
+        },
+        {
+          "main": "",
+          "supp": "Log . d ( TAG , \"encoding: \" + contentEncoding ) ; }"
+        },
+        {
+          "main": "",
+          "supp": "= entity . getContent ( )"
+        },
+        {
+          "main": "connection",
+          "supp": "entity"
+        },
+        {
+          "main": "getInputStream",
+          "supp": "getContent"
+        },
+        {
+          "main": "connection",
+          "supp": "entity"
+        },
+        {
+          "main": "getInputStream",
+          "supp": "getContent"
+        },
+        {
+          "main": ") ; } else { input = connection . getInputStream (",
+          "supp": ""
+        },
+        {
+          "main": ", \"UTF-8\"",
+          "supp": ""
+        },
+        {
+          "main": "",
+          "supp": "HttpPost httpPost = createHttpPost ( ) ;"
+        },
+        {
+          "main": "HttpURLConnection connection",
+          "supp": "LinkedList < BasicNameValuePair > list"
+        },
+        {
+          "main": "openConnection",
+          "supp": "new LinkedList < BasicNameValuePair >"
+        },
+        {
+          "main": "mPostUrl",
+          "supp": ""
+        },
+        {
+          "main": "connection",
+          "supp": "list"
+        },
+        {
+          "main": "setRequestMethod",
+          "supp": "add"
+        },
+        {
+          "main": "\"POST\" ) ; connection . setDoOutput",
+          "supp": "new BasicNameValuePair"
+        },
+        {
+          "main": "true ) ; connection . setRequestProperty ( \"Content-Type\"",
+          "supp": "\"r\""
+        },
+        {
+          "main": "\"application/x-www-form-urlencoded;charset=utf-8\" ) ; connection . setRequestProperty ( \"AT\" , \"1\" ) ; String body = \"r=\" + URLEncoder . encode (",
+          "supp": ""
+        },
+        {
+          "main": "",
+          "supp": ") ) ; UrlEncodedFormEntity entity = new UrlEncodedFormEntity ( list"
+        },
+        {
+          "main": "OutputStream os = connection",
+          "supp": "httpPost"
+        },
+        {
+          "main": "getOutputStream",
+          "supp": "setEntity"
+        },
+        {
+          "main": "",
+          "supp": "entity"
+        },
+        {
+          "main": "os",
+          "supp": "HttpResponse response = mHttpClient"
+        },
+        {
+          "main": "write",
+          "supp": "execute"
+        },
+        {
+          "main": "body . getBytes ( \"UTF-8\" ) ) ; os . flush ( ) ; os . close (",
+          "supp": "httpPost"
+        },
+        {
+          "main": "readResponseContent",
+          "supp": "getResponseContent"
+        },
+        {
+          "main": "connection",
+          "supp": "response . getEntity ( )"
+        },
+        {
+          "main": "",
+          "supp": ") ; } catch ( ClientProtocolException e ) { Log . e ( TAG , e . toString ( ) ) ; e . printStackTrace ( ) ; throw new NetworkFailureException ( \"postRequest failed\""
+        },
+        {
+          "main": "HttpURLConnection connection",
+          "supp": "HttpGet httpGet"
+        },
+        {
+          "main": "openConnection",
+          "supp": "new HttpGet"
+        },
+        {
+          "main": "connection",
+          "supp": "HttpResponse response = null ; response = mHttpClient"
+        },
+        {
+          "main": "setRequestMethod",
+          "supp": "execute"
+        },
+        {
+          "main": "\"GET\"",
+          "supp": "httpGet"
+        },
+        {
+          "main": "readResponseContent",
+          "supp": "getResponseContent"
+        },
+        {
+          "main": "connection",
+          "supp": "response . getEntity ( )"
+        },
+        {
+          "main": "",
+          "supp": "String jsBegin = \"_setup(\" ; String jsEnd = \")}</script>\" ; int begin = resString . indexOf ( jsBegin ) ; int end = resString . lastIndexOf ( jsEnd ) ; String jsString = null ; if ( begin ! = - 1 & & end ! = - 1 & & begin < end ) { jsString = resString . substring ( begin + jsBegin . length ( ) , end ) ; }"
+        },
+        {
+          "main": "parseSetupContent ( resString )",
+          "supp": "jsString"
+        },
+        {
+          "main": "",
+          "supp": ") ; } catch ( ClientProtocolException e ) { Log . e ( TAG , e . toString ( ) ) ; e . printStackTrace ( ) ; throw new NetworkFailureException ( \"gettasklists: httpget failed\""
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\AlarmAlertActivity.java",
+      "changes": [
+        {
+          "main": "e ) { e . printStackTrace ( ) ; } catch (",
+          "supp": "|"
+        },
+        {
+          "main": "e ) { e . printStackTrace ( ) ; } catch (",
+          "supp": "|"
+        },
+        {
+          "main": "e ) { e . printStackTrace ( ) ; } catch (",
+          "supp": "|"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\AlarmInitReceiver.java",
+      "changes": [
+        {
+          "main": "c",
+          "supp": "cursor"
+        },
+        {
+          "main": "c",
+          "supp": "cursor"
+        },
+        {
+          "main": "c",
+          "supp": "cursor"
+        },
+        {
+          "main": "c",
+          "supp": "cursor"
+        },
+        {
+          "main": "",
+          "supp": ") ; long noteId = cursor . getLong ( COLUMN_ID"
+        },
+        {
+          "main": "c . getLong ( COLUMN_ID )",
+          "supp": "noteId"
+        },
+        {
+          "main": "FLAG_IMMUTABLE",
+          "supp": "FLAG_UPDATE_CURRENT"
+        },
+        {
+          "main": "alermManager",
+          "supp": "alarmManager"
+        },
+        {
+          "main": "alermManager",
+          "supp": "alarmManager"
+        },
+        {
+          "main": "c",
+          "supp": "cursor"
+        },
+        {
+          "main": "c",
+          "supp": "cursor"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\DateTimePickerDialog.java",
+      "changes": [
+        {
+          "main": "FORMAT_24HOUR",
+          "supp": "FORMAT_12HOUR"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NoteEditActivity.java",
+      "changes": [
+        {
+          "main": "\"Restoring from killed activity\"",
+          "supp": "\"从被杀死的 Activity 恢复\""
+        },
+        {
+          "main": "\"load note failed with note id\"",
+          "supp": "\"加载笔记失败，笔记 ID: \""
+        },
+        {
+          "main": "\"The call record number is null\"",
+          "supp": "\"通话记录号码为空\""
+        },
+        {
+          "main": "\"load call note failed with note id\"",
+          "supp": "\"加载通话记录笔记失败，笔记 ID: \""
+        },
+        {
+          "main": "\"Intent not specified action, should not support\"",
+          "supp": "\"Intent 未指定动作，不支持\""
+        },
+        {
+          "main": "time",
+          "supp": "currentTime"
+        },
+        {
+          "main": "time",
+          "supp": "currentTime"
+        },
+        {
+          "main": "time",
+          "supp": "currentTime"
+        },
+        {
+          "main": ";",
+          "supp": ""
+        },
+        {
+          "main": ";",
+          "supp": ""
+        },
+        {
+          "main": "\"Unspported widget type\"",
+          "supp": "\"Unsupported widget type\""
+        },
+        {
+          "main": "-",
+          "supp": ""
+        },
+        {
+          "main": "int itemId =",
+          "supp": "switch ("
+        },
+        {
+          "main": "; if ( itemId = =",
+          "supp": ") { case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "; break ; default : break"
+        },
+        {
+          "main": "\"Move notes to trash folder error, should not happens\"",
+          "supp": "\"Move notes to trash folder error, should not happen\""
+        },
+        {
+          "main": "(",
+          "supp": ""
+        },
+        {
+          "main": ")",
+          "supp": ""
+        },
+        {
+          "main": "\"Clock alert setting error\"",
+          "supp": "\"提醒设置错误\""
+        },
+        {
+          "main": "\"Index out of mEditTextList boundrary, should not happen\"",
+          "supp": "\"索引超出 mEditTextList 范围，不应该发生\""
+        },
+        {
+          "main": "\"Wrong index, should not happen\"",
+          "supp": "\"错误的索引，不应该发生\""
+        },
+        {
+          "main": "if",
+          "supp": "CheckBox cb ="
+        },
+        {
+          "main": "hasText",
+          "supp": "CheckBox"
+        },
+        {
+          "main": "{",
+          "supp": ""
+        },
+        {
+          "main": "",
+          "supp": "; if ( hasText ) { cb"
+        },
+        {
+          "main": "mEditTextList . getChildAt ( index ) . findViewById ( R . id . cb_edit_item )",
+          "supp": "cb"
+        },
+        {
+          "main": "if ( (",
+          "supp": "CheckBox cb ="
+        },
+        {
+          "main": ")",
+          "supp": "; if ( cb"
+        },
+        {
+          "main": "return",
+          "supp": "if ("
+        },
+        {
+          "main": "?",
+          "supp": ") { return"
+        },
+        {
+          "main": ":",
+          "supp": "; } else { return"
+        },
+        {
+          "main": "",
+          "supp": "}"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NoteEditText.java",
+      "changes": [
+        {
+          "main": "EditText",
+          "supp": "androidx . appcompat . widget . AppCompatEditText"
+        },
+        {
+          "main": "\"OnTextViewChangeListener was not seted\"",
+          "supp": "\"OnTextViewChangeListener was not set\""
+        },
+        {
+          "main": "\"OnTextViewChangeListener was not seted\"",
+          "supp": "\"OnTextViewChangeListener was not set\""
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NoteItemData.java",
+      "changes": [
+        {
+          "main": ",",
+          "supp": ""
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NotesListActivity.java",
+      "changes": [
+        {
+          "main": "",
+          "supp": "@ Override"
+        },
+        {
+          "main": "int itemId =",
+          "supp": "switch ("
+        },
+        {
+          "main": "; if ( itemId = =",
+          "supp": ") { case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else if ( itemId = =",
+          "supp": "break ; case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "} else {",
+          "supp": "break ; default :"
+        },
+        {
+          "main": ";",
+          "supp": ""
+        },
+        {
+          "main": "",
+          "supp": "@ Override"
+        },
+        {
+          "main": "",
+          "supp": "long folderId = adapter . getItemId ( which ) ;"
+        },
+        {
+          "main": "",
+          "supp": "folderId ) ; int selectedCount = mNotesListAdapter . getSelectedCount ( ) ; String folderName ="
+        },
+        {
+          "main": "getItemId",
+          "supp": "getFolderName"
+        },
+        {
+          "main": "",
+          "supp": "NotesListActivity . this ,"
+        },
+        {
+          "main": "",
+          "supp": "; String message = getString ( R . string . format_move_notes_to_folder , selectedCount , folderName"
+        },
+        {
+          "main": "getString ( R . string . format_move_notes_to_folder , mNotesListAdapter . getSelectedCount ( ) , adapter . getFolderName ( NotesListActivity . this , which ) )",
+          "supp": "message"
+        },
+        {
+          "main": "",
+          "supp": "@ Override"
+        },
+        {
+          "main": "\"Delete notes error, should not happens\"",
+          "supp": "\"Delete notes error, should not happen\""
+        },
+        {
+          "main": "\"Move notes to trash folder error, should not happens\"",
+          "supp": "\"Move notes to trash folder error, should not happen\""
+        },
+        {
+          "main": "if",
+          "supp": "switch"
+        },
+        {
+          "main": "= =",
+          "supp": ") { case"
+        },
+        {
+          "main": ") {",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "; break ; default : break"
+        },
+        {
+          "main": "",
+          "supp": "if ( inputMethodManager ! = null ) {"
+        },
+        {
+          "main": "",
+          "supp": "}"
+        },
+        {
+          "main": "\"Unspported widget type\"",
+          "supp": "\"Unsupported widget type\""
+        },
+        {
+          "main": "int itemId =",
+          "supp": "switch ("
+        },
+        {
+          "main": "; if ( itemId = =",
+          "supp": ") { case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "break ;"
+        },
+        {
+          "main": "else if ( itemId = =",
+          "supp": "case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "break ;"
+        },
+        {
+          "main": "else if ( itemId = =",
+          "supp": "case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "break ;"
+        },
+        {
+          "main": "else if ( itemId = =",
+          "supp": "case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "break ;"
+        },
+        {
+          "main": "else if ( itemId = =",
+          "supp": "case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "break ;"
+        },
+        {
+          "main": "else if ( itemId = =",
+          "supp": "case"
+        },
+        {
+          "main": ")",
+          "supp": ":"
+        },
+        {
+          "main": "",
+          "supp": "; break ; } default : break"
+        },
+        {
+          "main": "",
+          "supp": "@ Override"
+        },
+        {
+          "main": "selection =",
+          "supp": "if"
+        },
+        {
+          "main": "?",
+          "supp": "{"
+        },
+        {
+          "main": ":",
+          "supp": "= selection ; } else { selection ="
+        },
+        {
+          "main": "",
+          "supp": "}"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NotesListAdapter.java",
+      "changes": [
+        {
+          "main": ";",
+          "supp": ""
+        },
+        {
+          "main": "null",
+          "supp": "values"
+        },
+        {
+          "main": "values",
+          "supp": "null"
+        },
+        {
+          "main": "Iterator < Boolean > iter = values . iterator ( ) ;",
+          "supp": ""
+        },
+        {
+          "main": "while",
+          "supp": "for"
+        },
+        {
+          "main": "iter . hasNext ( )",
+          "supp": "Boolean value : values"
+        },
+        {
+          "main": "true = = iter . next ( )",
+          "supp": "value"
+        },
+        {
+          "main": "if ( null =",
+          "supp": "Boolean selected"
+        },
+        {
+          "main": ") {",
+          "supp": ";"
+        },
+        {
+          "main": "false ; } return mSelectedIndex . get ( position )",
+          "supp": "selected ! = null & & selected"
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\ui\\NotesPreferenceActivity.java",
+      "changes": [
+        {
+          "main": "; import android . os . Build",
+          "supp": ""
+        },
+        {
+          "main": "if ( Build . VERSION . SDK_INT > = Build . VERSION_CODES . TIRAMISU ) { registerReceiver ( mReceiver , filter , Context . RECEIVER_NOT_EXPORTED ) ; } else {",
+          "supp": ""
+        },
+        {
+          "main": "}",
+          "supp": ""
+        }
+      ]
+    },
+    {
+      "file": "net\\micode\\notes\\widget\\NoteWidgetProvider.java",
+      "changes": [
+        {
+          "main": "| PendingIntent . FLAG_IMMUTABLE",
+          "supp": ""
+        },
+        {
+          "main": "| PendingIntent . FLAG_IMMUTABLE",
+          "supp": ""
+        }
+      ]
+    }
+  ],
+  "only_main": [],
+  "only_supp": []
+}

@@ -28,6 +28,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Build;
+import net.micode.notes.tool.DraftStore;
+import net.micode.notes.tool.Notifications;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -147,6 +150,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
 
     private String mUserQuery;
     private Pattern mPattern;
+    private String mDraftKey = java.util.UUID.randomUUID().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +158,23 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
         this.setContentView(R.layout.note_edit);
 
         Intent noteIntent = getIntent();
+        Bundle draft = savedInstanceState == null ? null : savedInstanceState.getBundle("workingDraft");
+        if (savedInstanceState != null) mDraftKey = savedInstanceState.getString("draftKey", mDraftKey);
+        else if (noteIntent != null && noteIntent.hasExtra("draftKey")) {
+            mDraftKey = noteIntent.getStringExtra("draftKey");
+            draft = DraftStore.load(this, mDraftKey);
+        }
+        if (draft != null) {
+            try {
+                mWorkingNote = WorkingNote.restore(this, draft);
+                mWorkingNote.setOnSettingStatusChangedListener(this);
+                initResources();
+                showToast(R.string.draft_restored);
+                return;
+            } catch (RuntimeException e) {
+                mWorkingNote = null;
+            }
+        }
         if (savedInstanceState != null && savedInstanceState.getLong(Intent.EXTRA_UID, 0) > 0) {
             noteIntent = new Intent(Intent.ACTION_VIEW);
             noteIntent.putExtra(Intent.EXTRA_UID, savedInstanceState.getLong(Intent.EXTRA_UID));
@@ -167,6 +188,16 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
     }
 
     private boolean initActivityState(Intent intent) {
+        try {
+            return readActivityState(intent);
+        } catch (RuntimeException e) {
+            showToast(R.string.error_note_not_exist);
+            return false;
+        }
+    }
+
+    private boolean readActivityState(Intent intent) {
+        if (intent == null) return false;
         /**
          * If the user specified the {@link Intent#ACTION_VIEW} but not provided with id,
          * then jump to the NotesListActivity
@@ -180,21 +211,19 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
              * Starting from the searched result
              */
             if (intent.hasExtra(SearchManager.EXTRA_DATA_KEY)) {
-                noteId = Long.parseLong(intent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
+                Object value = intent.getExtras().get(SearchManager.EXTRA_DATA_KEY);
+                if (!(value instanceof String) || !((String) value).matches("[0-9]{1,19}")) return false;
+                noteId = Long.parseLong((String) value);
                 mUserQuery = intent.getStringExtra(SearchManager.USER_QUERY);
             }
 
             if (!DataUtils.visibleInNoteDatabase(getContentResolver(), noteId, Notes.TYPE_NOTE)) {
-                Intent jump = new Intent(this, NotesListActivity.class);
-                startActivity(jump);
                 showToast(R.string.error_note_not_exist);
-                finish();
                 return false;
             } else {
                 mWorkingNote = WorkingNote.load(this, noteId);
                 if (mWorkingNote == null) {
                     Log.e(TAG, "load note failed with note id" + noteId);
-                    finish();
                     return false;
                 }
             }
@@ -210,6 +239,13 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
                     Notes.TYPE_WIDGET_INVALIDE);
             int bgResId = intent.getIntExtra(Notes.INTENT_EXTRA_BACKGROUND_ID,
                     ResourceParser.getDefaultBgId(this));
+            if (!sBgSelectorSelectionMap.containsKey(bgResId)) bgResId = ResourceParser.getDefaultBgId(this);
+            if (folderId != Notes.ID_ROOT_FOLDER && folderId != Notes.ID_CALL_RECORD_FOLDER
+                    && !DataUtils.visibleInNoteDatabase(getContentResolver(), folderId, Notes.TYPE_FOLDER)) return false;
+            if (widgetType != Notes.TYPE_WIDGET_2X && widgetType != Notes.TYPE_WIDGET_4X) {
+                widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+                widgetType = Notes.TYPE_WIDGET_INVALIDE;
+            }
 
             // Parse call-record note
             String phoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
@@ -224,7 +260,6 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
                     mWorkingNote = WorkingNote.load(this, noteId);
                     if (mWorkingNote == null) {
                         Log.e(TAG, "load call note failed with note id" + noteId);
-                        finish();
                         return false;
                     }
                 } else {
@@ -242,7 +277,6 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
                             | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         } else {
             Log.e(TAG, "Intent not specified action, should not support");
-            finish();
             return false;
         }
         mWorkingNote.setOnSettingStatusChangedListener(this);
@@ -252,6 +286,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
+        if (mWorkingNote == null || mNoteEditor == null) return;
         initNoteScreen();
     }
 
@@ -302,26 +337,38 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        initActivityState(intent);
+        if (!saveNote()) return;
+        WorkingNote previous = mWorkingNote;
+        String previousQuery = mUserQuery;
+        if (!initActivityState(intent)) {
+            mWorkingNote = previous;
+            mUserQuery = previousQuery;
+            return;
+        }
+        setIntent(intent);
+        mDraftKey = java.util.UUID.randomUUID().toString();
+        initNoteScreen();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        if (mWorkingNote == null || mNoteEditor == null) return;
         /**
          * For new note without note id, we should firstly save it to
          * generate a id. If the editing note is not worth saving, there
          * is no id which is equivalent to create new note
          */
-        if (!mWorkingNote.existInDatabase()) {
-            saveNote();
-        }
+        saveNote();
+        outState.putBundle("workingDraft", mWorkingNote.snapshot());
+        outState.putString("draftKey", mDraftKey);
         outState.putLong(Intent.EXTRA_UID, mWorkingNote.getNoteId());
         Log.d(TAG, "Save working note id: " + mWorkingNote.getNoteId() + " onSaveInstanceState");
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (mWorkingNote == null || mNoteBgColorSelector == null) return super.dispatchTouchEvent(ev);
         if (mNoteBgColorSelector.getVisibility() == View.VISIBLE
                 && !inRangeOfView(mNoteBgColorSelector, ev)) {
             mNoteBgColorSelector.setVisibility(View.GONE);
@@ -387,6 +434,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
     @Override
     protected void onPause() {
         super.onPause();
+        if (mWorkingNote == null || mNoteEditor == null) return;
         if(saveNote()) {
             Log.d(TAG, "Note data was saved with length:" + mWorkingNote.getContent().length());
         }
@@ -441,11 +489,12 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
 
     @Override
     public void onBackPressed() {
+        if (mWorkingNote == null || mNoteEditor == null) { super.onBackPressed(); return; }
         if(clearSettingState()) {
             return;
         }
 
-        saveNote();
+        if (!saveNote()) return;
         super.onBackPressed();
     }
 
@@ -469,7 +518,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (isFinishing()) {
+        if (isFinishing() || mWorkingNote == null || mNoteEditor == null) {
             return true;
         }
         clearSettingState();
@@ -494,6 +543,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mWorkingNote == null) return false;
         int itemId = item.getItemId();
         if (itemId == R.id.menu_new_note) {
             createNewNote();
@@ -553,7 +603,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
 
     private void createNewNote() {
         // Firstly, save current editing notes
-        saveNote();
+        if (!saveNote()) return;
 
         // For safety, start a new NoteEditActivity
         finish();
@@ -583,6 +633,7 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
             }
         }
         mWorkingNote.markDeleted(true);
+        DraftStore.remove(this, mDraftKey);
     }
 
     private boolean isSyncMode() {
@@ -594,20 +645,15 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
          * User could set clock to an unsaved note, so before setting the
          * alert clock, we should save the note first
          */
-        if (!mWorkingNote.existInDatabase()) {
-            saveNote();
-        }
+        if (!saveNote()) return;
         if (mWorkingNote.getNoteId() > 0) {
-            Intent intent = new Intent(this, AlarmReceiver.class);
-            intent.setData(ContentUris.withAppendedId(Notes.CONTENT_NOTE_URI, mWorkingNote.getNoteId()));
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent,
-                    PendingIntent.FLAG_IMMUTABLE);
-            AlarmManager alarmManager = ((AlarmManager) getSystemService(ALARM_SERVICE));
+            AlarmScheduler.refresh(this, mWorkingNote.getNoteId());
             showAlertHeader();
-            if(!set) {
-                alarmManager.cancel(pendingIntent);
-            } else {
-                alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);
+            if (set) {
+                Notifications.request(this);
+                if (Build.VERSION.SDK_INT >= 31 && !((AlarmManager) getSystemService(ALARM_SERVICE)).canScheduleExactAlarms()) {
+                    showToast(R.string.alarm_inexact, Toast.LENGTH_LONG);
+                }
             }
         } else {
             /**
@@ -784,8 +830,16 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
     }
 
     private boolean saveNote() {
+        if (mWorkingNote == null || mNoteEditor == null) return true;
         getWorkingText();
+        boolean dirty = mWorkingNote.needsSave();
+        boolean recoverable = !dirty || DraftStore.save(this, mDraftKey, mWorkingNote.snapshot());
         boolean saved = mWorkingNote.saveNote();
+        if (!saved) {
+            showToast(recoverable ? R.string.save_failed : R.string.draft_failed, Toast.LENGTH_LONG);
+            return false;
+        }
+        DraftStore.remove(this, mDraftKey);
         if (saved) {
             /**
              * There are two modes from List view to edit view, open one note,
@@ -797,6 +851,12 @@ public class NoteEditActivity extends LocalizedActivity implements OnClickListen
             setResult(RESULT_OK);
         }
         return saved;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
+        if (requestCode == 501 && !Notifications.allowed(this)) showToast(R.string.notifications_denied, Toast.LENGTH_LONG);
     }
 
     private void sendToDesktop() {
