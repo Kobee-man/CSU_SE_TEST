@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+hook_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+for python in python python3; do
+    if command -v "$python" >/dev/null 2>&1 && "$python" -c 'import sys; sys.exit(sys.version_info < (3, 10))' 2>/dev/null; then
+        exec "$python" "$hook_dir/../scripts/git_checks.py" pre-push "$@"
+    fi
+done
+echo 'Git checks require Python 3.10+ on PATH.' >&2
+exit 1

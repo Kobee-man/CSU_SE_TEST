@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 界面美化新增：替代原 .9.png 的矢量卡片背景。原图保留在 drawable-hdpi/ -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/note_white" />
+    <stroke
+        android:width="@dimen/card_stroke"
+        android:color="@color/note_white_stroke" />
+    <corners
+        android:topLeftRadius="@dimen/card_corner"
+        android:topRightRadius="@dimen/card_corner"
+        android:bottomRightRadius="@dimen/card_corner"
+        android:bottomLeftRadius="@dimen/card_corner" />
+</shape>

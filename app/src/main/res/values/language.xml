@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferences_language_title">Language / 语言</string>
+    <string name="language_system">Follow system</string>
+    <string name="note_editor_hint">Write something worth remembering…</string>
+    <string name="note_background_color">Change note color</string>
+    <string name="note_color_yellow">Yellow</string>
+    <string name="note_color_blue">Blue</string>
+    <string name="note_color_white">White</string>
+    <string name="note_color_green">Green</string>
+    <string name="note_color_red">Red</string>
+    <string-array name="app_language_entries">
+        <item>简体中文</item>
+        <item>English</item>
+        <item>繁體中文</item>
+        <item>@string/language_system</item>
+    </string-array>
+    <string-array name="app_language_values" translatable="false">
+        <item>zh-CN</item>
+        <item>en</item>
+        <item>zh-TW</item>
+        <item></item>
+    </string-array>
+</resources>

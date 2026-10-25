@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save_failed">儲存失敗，編輯內容已保留為本機草稿，請重試。</string>
+    <string name="draft_failed">儲存失敗且無法寫入草稿，請留在編輯頁重試。</string>
+    <string name="draft_restored">已恢復上次未儲存的草稿。</string>
+    <string name="channel_reminders">便箋提醒</string>
+    <string name="channel_sync">同步狀態</string>
+    <string name="notifications_denied">通知未獲授權，提醒無法顯示。請在系統設定中允許通知。</string>
+    <string name="alarm_inexact">未授予精確鬧鐘權限，提醒可能延遲；可在系統設定中開啟。</string>
+    <string name="legacy_sync_disabled">舊版 Google Tasks 同步已停用，便箋儲存在本機。重新接入前需驗證新協定。</string>
+    <string name="contacts_denied">未獲聯絡人權限，將顯示電話號碼。</string>
+</resources>

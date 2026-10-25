@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferences_language_title">界面语言 / Language</string>
+    <string name="language_system">跟随系统</string>
+    <string name="note_editor_hint">记下此刻的想法…</string>
+    <string name="note_background_color">更换便签颜色</string>
+    <string name="note_color_yellow">黄色</string>
+    <string name="note_color_blue">蓝色</string>
+    <string name="note_color_white">白色</string>
+    <string name="note_color_green">绿色</string>
+    <string name="note_color_red">红色</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save_failed">Save failed. Your edits are kept as a local draft. Please retry.</string>
+    <string name="draft_failed">Save and draft recovery both failed. Stay in the editor and retry.</string>
+    <string name="draft_restored">Recovered your unsaved draft.</string>
+    <string name="channel_reminders">Note reminders</string>
+    <string name="channel_sync">Sync status</string>
+    <string name="notifications_denied">Notifications are disabled. Enable them in system settings to see reminders.</string>
+    <string name="alarm_inexact">Exact alarm access is disabled. Reminders may be delayed; enable access in system settings.</string>
+    <string name="legacy_sync_disabled">Legacy Google Tasks sync is disabled. Notes stay on this device. A verified protocol is required to reconnect.</string>
+    <string name="contacts_denied">Contacts access was denied. Phone numbers will be displayed.</string>
+</resources>

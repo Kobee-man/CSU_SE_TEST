@@ -1,0 +1,34 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'net.micode.notes'
+    compileSdk 37
+
+    defaultConfig {
+        applicationId "net.micode.notes"
+        minSdk 21
+        targetSdk 37
+        versionCode 2
+        versionName "0.2"
+        testInstrumentationRunner "net.micode.notes.ui.RepairInstrumentation"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        baseline = file('lint-baseline.xml')
+        abortOnError = true
+        warningsAsErrors = true
+    }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save_failed">保存失败，编辑内容已保留为本地草稿，请重试。</string>
+    <string name="draft_failed">保存失败且无法写入草稿，请留在编辑页重试。</string>
+    <string name="draft_restored">已恢复上次未保存的草稿。</string>
+    <string name="channel_reminders">便签提醒</string>
+    <string name="channel_sync">同步状态</string>
+    <string name="notifications_denied">通知未获授权，提醒无法显示。请在系统设置中允许通知。</string>
+    <string name="alarm_inexact">未授予精确闹钟权限，提醒可能延迟；可在系统设置中开启。</string>
+    <string name="legacy_sync_disabled">旧版 Google Tasks 同步已停用，便签保存在本机。重新接入前需验证新协议。</string>
+    <string name="contacts_denied">未获联系人权限，将显示电话号码。</string>
+</resources>

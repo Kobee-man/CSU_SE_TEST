@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2010-2011, The MiCode Open Source Community (www.micode.net)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <!-- 字号：ResourceParser 按序引用 normal/medium/large/super，名字与数量不可改。
+         原值 17/20/26/33sp 在现代设备上偏大，整体下调并拉开层级差 -->
+    <dimen name="text_font_size_super">30sp</dimen>
+    <dimen name="text_font_size_large">24sp</dimen>
+    <dimen name="text_font_size_medium">18sp</dimen>
+    <dimen name="text_font_size_normal">16sp</dimen>
+    <dimen name="text_font_size_small">13sp</dimen>
+
+    <!-- ============ 以下为界面美化新增 ============ -->
+
+    <!-- 8dp 栅格 -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+
+    <!-- 卡片 -->
+    <dimen name="card_corner">12dp</dimen>
+    <dimen name="card_stroke">1dp</dimen>
+    <dimen name="card_margin_h">12dp</dimen>
+    <dimen name="card_margin_v">5dp</dimen>
+    <dimen name="card_padding_h">16dp</dimen>
+    <dimen name="card_padding_v">14dp</dimen>
+
+    <!-- 列表项最小高度，保证触控目标不小于 48dp -->
+    <dimen name="list_item_min_height">64dp</dimen>
+
+    <!-- 换色面板：5 个色块各 44dp + 间隙 + 左右内边距 -->
+    <dimen name="color_panel_width">276dp</dimen>
+    <dimen name="color_panel_height">60dp</dimen>
+    <dimen name="swatch_corner">8dp</dimen>
+    <dimen name="swatch_margin">3dp</dimen>
+
+    <!-- 新建便签按钮 -->
+    <dimen name="new_note_height">52dp</dimen>
+    <dimen name="new_note_margin">16dp</dimen>
+    <dimen name="new_note_corner">26dp</dimen>
+</resources>
